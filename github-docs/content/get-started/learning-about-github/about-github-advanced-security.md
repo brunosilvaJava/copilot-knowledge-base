@@ -22,7 +22,7 @@ You get the following features with GitHub Code Security:
 
 * **Copilot Autofix**: Get automatically generated fixes for code scanning alerts.{% ifversion ai-powered-security-detections %}
 
-* **AI-powered security detections**: Find vulnerabilities in languages and frameworks not covered by CodeQL with an AI-based scanning engine that runs during pull request review.{% endif %}
+* **AI Scan**: Find vulnerabilities in languages and frameworks not covered by CodeQL with an AI-based scanning engine that runs during pull request review.{% endif %}
 
 * **Security campaigns**: Reduce security debt at scale.
 
@@ -102,9 +102,7 @@ For more information about individual features, see [GitHub Security Features](h
 
 Organizations on GitHub Team and GitHub Enterprise can run free security risk assessments to understand their exposure to security vulnerabilities:
 
-
 * **Secret leaks**: Scan your organization for leaked secrets and see how many could have been prevented by GitHub Secret Protection. See [Secret Security With GitHub](https://docs.github.com/en/code-security/concepts/secret-security/secret-security-with-github#secret-risk-assessment).
-
 
 * **Code vulnerabilities**: Scan up to 20 of your most active repositories and see how many vulnerabilities could be automatically fixed with Copilot Autofix if you enable GitHub Code Security. See [Risk Assessment](https://docs.github.com/en/code-security/concepts/code-scanning/risk-assessment).
 
@@ -134,7 +132,7 @@ For information about managing your GitHub Advanced Security license, see [Manag
 
 ## Leveraging GitHub Copilot Chat to understand security alerts
 
-Additionally, with a GitHub Copilot Enterprise license, you can ask GitHub Copilot Chat for help to better understand security alerts in repositories in your organization (code scanning, secret scanning, and Dependabot alerts). See [Chat In GitHub](https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github#asking-questions-about-alerts-from-github-advanced-security-features).
+Additionally, with a GitHub Copilot Enterprise license, you can ask GitHub Copilot Chat for help to better understand security alerts in repositories in your organization (code scanning, secret scanning, and Dependabot alerts). See [Get Started With Chat In Your Ide](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/get-started-with-chat-in-your-ide#ask-questions-about-alerts-from-github-advanced-security-features).
 
 
 

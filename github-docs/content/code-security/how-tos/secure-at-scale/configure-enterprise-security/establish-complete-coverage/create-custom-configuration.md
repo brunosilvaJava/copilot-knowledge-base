@@ -42,7 +42,7 @@ When creating a security configuration, keep in mind that:
     > [!NOTE]
     > You can only enable extended metadata checks if validity checks are enabled.
     * **Generic patterns**. To learn more about scanning for generic patterns, see [Supported Secret Scanning Patterns](https://docs.github.com/en/code-security/reference/secret-security/supported-secret-scanning-patterns#supported-generic-patterns) and [Viewing Alerts](https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-secret-scanning-alerts/viewing-alerts).
-    * **Scan for AI-detected secrets**. To learn more, see [Security And Quality Ai Features](https://docs.github.com/en/code-security/responsible-use/security-and-quality-ai-features).
+    * **Scan for AI-detected secrets**. {% ifversion fpt or ghec %}To learn more, see [Security And Quality Ai Features](https://docs.github.com/en/code-security/responsible-use/security-and-quality-ai-features).{% endif %}
     * **Push protection**. To learn about push protection, see [Push Protection](https://docs.github.com/en/code-security/concepts/secret-security/push-protection).
     * **Bypass privileges**. By assigning bypass privileges{% ifversion push-protection-org-enterprise-exemptions %} or exemptions, selected actors can bypass or skip push protection. There is a review and approval process for all other contributors. See [Delegated Bypass](https://docs.github.com/en/code-security/concepts/secret-security/delegated-bypass).{% endif %}
     * **Prevent direct alert dismissals**. To learn more, see [Enable Delegated Dismissal](https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-secret-scanning-alerts/enable-delegated-dismissal).
@@ -68,7 +68,8 @@ When creating a security configuration, keep in mind that:
         > [!NOTE]
 > The default security configuration for an organization is only automatically applied to new repositories created in your organization. If a repository is transferred into your organization, you will still need to apply an appropriate security configuration to the repository manually.
 
-   * **Enforce configuration**. Block repository owners from changing features that are enabled or disabled by the configuration (features that are not set aren't enforced). Select **Enforce** from the dropdown menu.
+   * **Enforce configuration**. Enterprise owners and members with the **admin** role
+ can block repository owners only, or both repository and organization owners, from changing features that are enabled or disabled by the configuration. Features that are not set aren't enforced. Select **Don't enforce**, **Enforce for repository owners**, or **Enforce for repository and organization owners** from the dropdown menu.
 
     > [!NOTE] Some situations can break the enforcement of security configurations. See [Configuration Enforcement](https://docs.github.com/en/code-security/reference/security-at-scale/configuration-enforcement).
 
@@ -95,7 +96,7 @@ When creating a security configuration, keep in mind that:
     * **Alerts**. To learn about secret scanning alerts, see [Secret Scanning](https://docs.github.com/en/code-security/concepts/secret-security/secret-scanning). 
     * **Validity checks**. To learn more about validity checks for partner patterns, see [Evaluating Alerts](https://docs.github.com/en/code-security/tutorials/remediate-leaked-secrets/evaluating-alerts#checking-a-secrets-validity).
     * **Generic patterns**. To learn more about scanning for generic patterns, see [Supported Secret Scanning Patterns](https://docs.github.com/en/code-security/reference/secret-security/supported-secret-scanning-patterns#supported-generic-patterns) and [Viewing Alerts](https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-secret-scanning-alerts/viewing-alerts).
-    * **Scan for AI-detected secrets**. To learn more, see [Security And Quality Ai Features](https://docs.github.com/en/code-security/responsible-use/security-and-quality-ai-features).
+    * **Scan for AI-detected secrets**. {% ifversion fpt or ghec %}To learn more, see [Security And Quality Ai Features](https://docs.github.com/en/code-security/responsible-use/security-and-quality-ai-features).{% endif %}
     * **Push protection**. To learn about push protection, see [Push Protection](https://docs.github.com/en/code-security/concepts/secret-security/push-protection).
     * **Prevent direct alert dismissals**. To learn more, see [Enable Delegated Dismissal](https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-secret-scanning-alerts/enable-delegated-dismissal).
 1. In the "Code scanning" table, choose whether you want to enable, disable, or keep the existing settings for code scanning default setup.
@@ -120,8 +121,8 @@ When creating a security configuration, keep in mind that:
         > [!NOTE]
 > The default security configuration for an organization is only automatically applied to new repositories created in your organization. If a repository is transferred into your organization, you will still need to apply an appropriate security configuration to the repository manually.
 
-   * **Enforce configuration**. Block repository owners from changing features that are enabled or disabled by the configuration (features that are not set aren't enforced). Select **Enforce** from the dropdown menu.
-
+   * **Enforce configuration**. Enterprise owners and members with the **admin** role
+ can block repository owners only, or both repository and organization owners, from changing features that are enabled or disabled by the configuration. Features that are not set aren't enforced. Select **Don't enforce**, **Enforce for repository owners**, or **Enforce for repository and organization owners** from the dropdown menu.
     > [!NOTE] Some situations can break the enforcement of security configurations. See [Configuration Enforcement](https://docs.github.com/en/code-security/reference/security-at-scale/configuration-enforcement).
 
 

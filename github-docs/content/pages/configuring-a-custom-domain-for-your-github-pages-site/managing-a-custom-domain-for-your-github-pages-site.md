@@ -96,6 +96,8 @@ If you are using an apex domain as your custom domain, we recommend also setting
 
 Navigate to your DNS provider and create a `CNAME` record for the `www` subdomain that points to your GitHub Pages default domain. For example, if your site is located at `<user>.github.io`, you should create a `CNAME` record that points `www.example.com` to `<user>.github.io` Similarly, for an organization site located at `<organization>.github.io`, you should create a `CNAME` record that points `www.example.com` to `<organization>.github.io`. Ensure that the `CNAME` record points directly to `<user>.github.io` or `<organization>.github.io` without including the repository name.
 
+These `CNAME` record values are the same for both publicly and privately published GitHub Pages sites. Privately published sites are available with GitHub Enterprise Cloud.
+
 For more information about how to create the correct record, see your DNS provider's documentation.
  For more information about the default domain for your site, see [What Is GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#types-of-github-pages-sites).
 
@@ -122,6 +124,8 @@ To set up a `www` or custom subdomain, such as `www.example.com` or `blog.exampl
 1. Navigate to your DNS provider and create a `CNAME` record that points your subdomain to the default domain for your site. For example, if you want to use the subdomain `www.example.com` for your user site, create a `CNAME` record that points `www.example.com` to `<user>.github.io`. If you want to use the subdomain `another.example.com` for your organization site, create a `CNAME` record that points `another.example.com` to `<organization>.github.io`. The `CNAME` record should always point to `<user>.github.io` or `<organization>.github.io`, excluding the repository name. For more information about how to create the correct record, see your DNS provider's documentation.
  For more information about the default domain for your site, see [What Is GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#types-of-github-pages-sites).
 
+
+   These `CNAME` record values are the same for both publicly and privately published GitHub Pages sites. Do not point the `CNAME` record to the unique `*.pages.github.io` subdomain shown in your repository's GitHub Pages settings. Privately published sites are available with GitHub Enterprise Cloud. For more information, see [Changing The Visibility Of Your GitHub Pages Site](https://docs.github.com/en/enterprise-cloud@latest/pages/getting-started-with-github-pages/changing-the-visibility-of-your-github-pages-site) in the GitHub Enterprise Cloud documentation.
 
 {% indented_data_reference reusables.pages.wildcard-dns-warning spaces=3 %}
 1. Open <span class="platform-mac">Terminal</span><span class="platform-linux">Terminal</span><span class="platform-windows">Git Bash</span>.

@@ -15,7 +15,7 @@ Use this table to find a suitable model quickly, see more detail in the sections
 | Model                                              | Task area             | Excels at (primary use case) | Further reading             |
 |----------------------------------------------------|-----------------------|------------------------------|-----------------------------|
 | {% for model in tables.copilot.model-comparison %} |
-| {{ model.name }}{% if model.name == 'MAI-Code-1-Flash' or model.name == 'MAI-Code-1.1-Flash' %}[^mai-code-1-flash]{% elsif model.name == 'Kimi K3' %}[^kimi-k3]{% endif %}                                   | {{ model.task_area }} | {{ model.excels_at }}        | {{ model.further_reading }} |
+| {{ model.name }}{% if model.name == 'MAI-Code-1.1-Flash' %}[^mai-models]{% elsif model.name == 'Kimi K3' %}[^kimi-k3]{% endif %}                                   | {{ model.task_area }} | {{ model.excels_at }}        | {{ model.further_reading }} |
 | {% endfor %}                                       |
 
 ## Task: General-purpose coding and writing
@@ -27,8 +27,6 @@ Use these models for common development tasks that require a balance of quality,
 | GPT-5.3-Codex | Delivers higher-quality code on complex engineering tasks like features, tests, debugging, refactors, and reviews without lengthy instructions. |
 | GPT-5 mini   | Reliable default for most coding and writing tasks. Fast, accurate, and works well across languages and frameworks.                             |
 | GPT-5.6 Terra | Balanced all-round choice for everyday interactive and agentic coding.                                                                          |
-| Raptor mini  | Specialized for fast, accurate inline suggestions and explanations.                                        |
-| MAI-Code-1-Flash | Strong instruction-following and adaptive reasoning make it a reliable default for everyday coding tasks, writing, and multi-turn development workflows. |
 
 ### When to use these models
 
@@ -53,7 +51,6 @@ These models are optimized for speed and responsiveness. They’re ideal for qui
 |-------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
 | GPT-5.6 Luna      | Lightweight, cost-efficient option for smaller, faster tasks. The lowest-cost model in the GPT-5.6 family. |
 | Claude Haiku 4.5  | Balances fast responses with quality output. Ideal for small tasks and lightweight code explanations.      |
-| MAI-Code-1-Flash | Handles quick coding tasks with adaptive efficiency, stays concise for simple requests and delivers fast, accurate responses without unnecessary depth. |
 
 ### When to use these models
 
@@ -80,9 +77,8 @@ These models are designed for tasks that require step-by-step reasoning, complex
 | GPT-5 mini       | Delivers deep reasoning and debugging with faster responses and lower resource usage than GPT-5. Ideal for interactive sessions and step-by-step code analysis. |
 | GPT-5.5           | Great at complex reasoning, code analysis, and technical decision-making.                                                                                       |
 | GPT-5.6 Sol       | The highest reasoning ceiling in the GPT-5.6 family. Best for complex reasoning over large codebases and demanding, long-running agentic work. |
-| Claude Sonnet 4.6 | Improves on Sonnet 4.5 with more reliable completions and smarter reasoning under pressure.                                                                     |
-| Claude Opus 4.7   | Anthropic’s most powerful model. Improves on Claude Opus 4.6.                                                               |
-| Gemini 3.1 Pro    | Advanced reasoning across long contexts and scientific or technical analysis.                                                                                   |
+| Claude Sonnet 4.6 | Reliable completions and smarter reasoning under pressure.                                                                     |
+| Claude Opus 4.7   | Anthropic’s most powerful model. Strong at deep reasoning over large, complex codebases.                                                               |
 
 ### When to use these models
 
@@ -106,8 +102,7 @@ Use these models when you want to ask questions about screenshots, diagrams, UI 
 | Model                                                 | Why it's a good fit                                                                                                                                                       |
 |-------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | GPT-5 mini       | Reliable default for most coding and writing tasks. Fast, accurate, and supports multimodal input for visual reasoning tasks. Works well across languages and frameworks. |
-| Claude Sonnet 4.6 | Improves on Sonnet 4.5 with more reliable completions and smarter reasoning under pressure.                                                                               |
-| Gemini 3.1 Pro    | Deep reasoning and debugging, ideal for complex code generation, debugging, and research workflows.                                                                       |
+| Claude Sonnet 4.6 | Reliable completions and smarter reasoning under pressure.                                                                               |
 
 ### When to use these models
 
@@ -130,17 +125,16 @@ Some models have behaviors, limitations, or safeguards that are useful to unders
 
 ### Kimi K3
 
-Kimi K3 is designed for long-context, multi-step coding and agentic workflows. In pre-release testing, the model exhibited elevated risk on certain higher-risk prompts and was less consistent than some other models in refusing requests involving sensitive topics. These behaviors may reflect differences in the model's safety post-training and alignment. We have deployed additional safeguards in GitHub Copilot to help mitigate the identified risks. As with any model, enterprises should evaluate model capabilities, limitations, and safeguards in light of their particular use cases and requirements.
+Kimi K3 is designed for long-context, multi-step coding and agentic workflows. Fine-tuned model variants may be included as part of the Kimi K3 (GitHub) offering on individual plans only. Fine-tuned variants are not included for Copilot Business or Copilot Enterprise plans. In pre-release testing, the model exhibited elevated risk on certain higher-risk prompts and was less consistent than some other models in refusing requests involving sensitive topics. These behaviors may reflect differences in the model's safety post-training and alignment. We have deployed additional safeguards in GitHub Copilot to help mitigate the identified risks. As with any model, enterprises should evaluate model capabilities, limitations, and safeguards in light of their particular use cases and requirements.
 
 ## Next steps
 
-[^mai-code-1-flash]: MAI models are continuously improving models. Performance and behavior may evolve over time as new checkpoints are released.
+[^mai-models]: MAI models are continuously improving models. Performance and behavior may evolve over time as new checkpoints are released.
 
 [^kimi-k3]: For important information about Kimi K3 behavior and safeguards, see [Model-specific considerations](#kimi-k3).
 
 Choosing the right model helps you get the most out of Copilot. If you're not sure which model to use, start with a general-purpose option like GPT-5 mini, then adjust based on your needs.
 
 * For detailed model specs and pricing, see [Supported Models](https://docs.github.com/en/copilot/reference/ai-models/supported-models).
-* For more examples of how to use different models, see [Compare Ai Models](https://docs.github.com/en/copilot/tutorials/compare-ai-models).
 * To switch between models, refer to [Change The Chat Model](https://docs.github.com/en/copilot/how-tos/use-ai-models/change-the-chat-model) or [Change The Completion Model](https://docs.github.com/en/copilot/how-tos/use-ai-models/change-the-completion-model).
 * To learn how Copilot Chat serves different AI models, see [Model Hosting](https://docs.github.com/en/copilot/reference/ai-models/model-hosting).

@@ -52,17 +52,21 @@ For information on which partner patterns are currently supported, see [Supporte
 
 
 
-With a GitHub Copilot Enterprise license, you can ask Copilot Chat for help to better understand security alerts, including secret scanning alerts, in repositories in your organization. For more information, see [Chat In GitHub](https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github#asking-questions-about-alerts-from-github-advanced-security-features).
+With a GitHub Copilot Enterprise license, you can ask Copilot Chat for help to better understand security alerts, including secret scanning alerts, in repositories in your organization. For more information, see [Get Started With Chat In Your Ide](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/get-started-with-chat-in-your-ide#ask-questions-about-alerts-from-github-advanced-security-features).
 
 
 
 You can use the REST API to retrieve a list of the most recent validation status for each of your tokens. For more information, see [Secret Scanning](https://docs.github.com/en/rest/secret-scanning) in the REST API documentation. You can also use webhooks to be notified of activity relating to a secret scanning alert. For more information, see the `secret_scanning_alert` event in [Webhook Events And Payloads?Actiontype=Created](https://docs.github.com/en/webhooks/webhook-events-and-payloads?actionType=created#secret_scanning_alert).
+
+
 
 ## Performing an on-demand validity check
 
 Once you have enabled validity checks for partner patterns for your repository, you can perform an "on-demand" validity check for any supported secret by clicking **{% octicon "sync" aria-hidden="true" aria-label="sync" %} Verify secret** in the alert view. GitHub will send the pattern to the relevant partner and display the validation status of the secret in the alert view.
 
 ![Screenshot of the UI showing a secret scanning alert. A button, labeled "Verify secret" is highlighted with an orange outline.](/assets/images/help/security/secret-scanning-verify-secret.png)
+
+
 
 ## Reviewing GitHub token metadata
 
@@ -120,7 +124,7 @@ The following table shows **all the available metadata**. Note that metadata che
 
 ## Asking GitHub Copilot Chat about secret scanning alerts
 
-With a GitHub Copilot Enterprise license, you can ask Copilot Chat for help to better understand security alerts, including secret scanning alerts, in repositories in your organization. For more information, see [Chat In GitHub](https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github#asking-questions-about-alerts-from-github-advanced-security-features).
+With a GitHub Copilot Enterprise license, you can ask Copilot Chat for help to better understand security alerts, including secret scanning alerts, in repositories in your organization. For more information, see [Get Started With Chat In Your Ide](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/get-started-with-chat-in-your-ide#ask-questions-about-alerts-from-github-advanced-security-features).
 
 
 

@@ -83,7 +83,7 @@ To change the format of the diff view in this tab, click {% octicon "gear" aria-
 
 1. When you're done, click **Start a review**. If you have already started a review, you can click **Add review comment**.
 
-Before you submit your review, your line comments are _pending_ and only visible to you. You can edit pending comments anytime before you submit your review. To cancel a pending review, including all of its pending comments, click **Review changes**, then click **Abandon review**.
+Before you submit your review, your line comments are _pending_ and only visible to you. You can edit pending comments anytime before you submit your review. To cancel a pending review, including all of its pending comments, click **Submit review**, then click **Discard review**.
 
 ![Screenshot of the comment field for a review. The "Abandon review" button is outlined in dark orange.](/assets/images/help/pull_requests/abandon-review-button.png)
 {% endwebui %}
@@ -133,7 +133,7 @@ For more information on reviewing pull requests in GitHub Codespaces, see [Using
 
 ## Understanding changes in a pull request
 
-> [!NOTE] You'll need access to GitHub Copilot. For more information, see [What Is GitHub Copilot](https://docs.github.com/en/copilot/get-started/what-is-github-copilot#get-access).
+> [!NOTE] You'll need access to GitHub Copilot. For more information, see [About GitHub Copilot](https://docs.github.com/en/copilot/get-started/about-github-copilot#get-access).
 
 
 GitHub Copilot can help you quickly understand changes in a pull request by providing context and explanations for specific commits. If you’re unsure about the purpose of a particular change or need more details about how it fits into the broader codebase, you can ask Copilot questions about individual commits.

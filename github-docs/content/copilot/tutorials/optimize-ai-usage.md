@@ -20,7 +20,7 @@ Choose the model based on the work involved:
 
 Use as much capability as the task requires, and as little as necessary. Matching capability to task improves outcomes and directly controls costs at scale.
 
-For a breakdown by model and task type, see [Compare Ai Models](https://docs.github.com/en/copilot/tutorials/compare-ai-models).
+For a breakdown by model and task type, see [Model Comparison](https://docs.github.com/en/copilot/reference/ai-models/model-comparison#recommended-models-by-task).
 
 ### Configure the reasoning level of the model
 
@@ -34,7 +34,7 @@ Auto model selection chooses a capable model for you, based on the intent of you
 
 A small router looks at your prompt and sends it to the model that can **handle it most efficiently**, reserving expensive reasoning models for complex problems. It also avoids models that burn through a token budget quickly.
 
-Auto model selection also **protects your cache**. It only changes models at natural cache boundaries, when a new session starts or after you run `/compact`, never mid-task. To understand more about why this matters, see [4. Preserve the cache](#4-preserve-the-cache).
+Auto model selection also **protects your cache**. It changes models at natural cache boundaries, when a new session starts or after you run `/compact`. As conversations evolve, it will re-route at points where quality improvements outweigh cache loss. To understand more about why this matters, see [4. Preserve the cache](#4-preserve-the-cache).
 
 Auto model selection also routes around degraded or busy models, so you hit fewer rate limits and errors.
 
@@ -113,7 +113,7 @@ AI credit session limits are most useful when:
 * You want to cap AI credits usage on a single session to avoid unexpected costs.
 * You're tuning agent efficiency and want to find the minimum AI credits that still produces a good result.
 
-Session limits are soft limits that help you control how many AI credits any single task consumes, but they don't replace user-level budgets or spending limits, which govern your overall monthly consumption. For those controls, see [Budgets For Usage Based Billing](https://docs.github.com/en/copilot/concepts/billing/budgets-for-usage-based-billing).
+Session limits are soft limits that help you control how many AI credits any single task consumes, but they don't replace user-level budgets or spending limits, which govern your overall monthly consumption. For those controls, see [Budgets](https://docs.github.com/en/copilot/concepts/billing-and-usage/organizations-and-enterprises/budgets).
 
 For information on how to set a session limit in Copilot CLI, see [Set Session Limit](https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/set-session-limit).
 
@@ -140,7 +140,7 @@ In Copilot CLI, `/chronicle` can generate useful insights from your session hist
 * Use `/chronicle tips` to analyze your recent session history and surface opportunities to use Copilot more efficiently.
 * Use `/chronicle cost-tips` to understand your token usage patterns and get insights into how to reduce cost.
 
-See [Chronicle](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/chronicle#the-chronicle-slash-command).
+See [Chronicle](https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/chronicle#using-the-chronicle-slash-command).
 
 ### Feed insights into a `copilot-instructions.md` file
 
@@ -190,4 +190,4 @@ Teams that invest in these guardrails see fewer retries, faster task completion,
 Monitor and manage your spending to get the most out of your AI credits:
 
 * **Use your dashboard and budget controls**. The "AI usage" page, under https://github.com/settings/billing, breaks down consumption across every feature and model, so you can see where your credits are actually going and adjust accordingly. See [Monitor Ai Usage](https://docs.github.com/en/copilot/how-tos/manage-and-track-spending/monitor-ai-usage).
-* **Upgrade for a larger allowance**. If you regularly approach your monthly limit, a higher plan may be more economical than paying for additional usage, as higher plans have more AI credit allowance. See [Individual Plans](https://docs.github.com/en/copilot/concepts/billing/individual-plans#github-ai-credits-allowance-by-plan) and [View And Change Your Copilot Plan](https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan).
+* **Upgrade for a larger allowance**. If you regularly approach your monthly limit, a higher plan may be more economical than paying for additional usage, as higher plans have more AI credit allowance. See [Plans](https://docs.github.com/en/copilot/get-started/plans#github-ai-credits-allowance-by-plan) and [View And Change Your Copilot Plan](https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan).

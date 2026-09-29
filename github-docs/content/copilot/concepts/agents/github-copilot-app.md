@@ -29,7 +29,7 @@ The GitHub Copilot app supports the following operating systems:
 
 ## What can I do with the GitHub Copilot app?
 
-* **Parallel workspaces:** Run multiple isolated agent sessions simultaneously, each with a dedicated git worktree and branch. When you start a new agent session you can choose to run it in a cloud-based sandbox (public preview) hosted by GitHub. For more information, see [Agent Sessions](https://docs.github.com/en/copilot/how-tos/github-copilot-app/agent-sessions#starting-a-session).
+* **Parallel workspaces:** Run multiple isolated agent sessions simultaneously, each with a dedicated git worktree and branch. You can run a session in a cloud sandbox, or configure a local sandbox to restrict the resources available to agent-run tools on your machine. For more information, see [Agent Sessions](https://docs.github.com/en/copilot/how-tos/github-copilot-app/agent-sessions#using-cloud-and-local-sandboxes).
 * **Session modes:** Choose how you work with agents: Interactive (collaborative), Plan (agent plans, you approve), or Autopilot (fully autonomous). You can also select from multiple LLMs and adjust reasoning effort for each session.
 * **Model selection:** Select from multiple LLMs, including models from your own provider using bring your own key (BYOK), and adjust reasoning effort for each session.
 * **GitHub integration:** Browse and find issues, start sessions from them, create and close pull requests, review pull requests, view CI check results, and search across your repositories—all within the app.
@@ -67,10 +67,14 @@ For more detailed optimization tips, see [Optimize Ai Usage](https://docs.github
 
 To share feedback, click the **Give feedback** icon in the bottom-left corner of the app.
 
+## Content exclusion
+
+For Copilot Business and Copilot Enterprise users, the GitHub Copilot app respects content exclusion policies configured at the enterprise, organization, and repository levels. Excluded files are not used as context. For more information, see [Content Exclusion](https://docs.github.com/en/copilot/concepts/context/content-exclusion).
+
 ## Public code
 
 GitHub Copilot app may generate code that is a match or near match of publicly available code, even if the "Suggestions matching public code" policy is set to "Block." See [Manage Policies](https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies#enabling-or-disabling-suggestions-matching-public-code).
 
 ## Further reading
 
-* [Getting Started](https://docs.github.com/en/copilot/how-tos/github-copilot-app/getting-started)
+* [Quickstart Copilot App](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app)

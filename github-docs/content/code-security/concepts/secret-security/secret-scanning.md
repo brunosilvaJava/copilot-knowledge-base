@@ -2,15 +2,11 @@
 
 When credentials like API keys and passwords are committed to repositories as hardcoded secrets, they become targets for unauthorized access. Secret scanning automatically detects credential leaks so you can secure them before they're exploited.
 
-
-
 > [!TIP]
 > At any time, you can run a free assessment of your organization's code for leaked secrets. 
 >
 > To generate a report, open the **{% octicon "shield" aria-hidden="true" aria-label="shield" %} Security and quality** tab for your organization, display the **{% octicon "key" aria-hidden="true" aria-label="key" %} Assessments** page, then click **Scan your organization**
 .
-
-
 
 ## How secret scanning protects your code
 
@@ -47,9 +43,14 @@ Beyond the default detection of partner and provider secrets, you can expand and
 
 * **Generic patterns.** Expand detection to secrets that aren't tied to a specific service provider, such as private keys, connection strings, and generic API keys.
 * **Custom patterns.** Define your own regular expressions to detect organization-specific secrets that aren't covered by default patterns.
+
 * **Validity checks.** Prioritize remediation by checking whether detected secrets are still active.
 
-* **AI-detected secrets.** Use AI to detect unstructured secrets like passwords, or to generate regular expressions for custom patterns.
+
+* **AI-detected secrets.** Use AI to detect unstructured secrets like passwords.
+
+
+* **AI-generated regular expressions.** Use AI to generate regular expressions for custom patterns.
 
 
 

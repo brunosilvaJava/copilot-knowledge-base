@@ -1,12 +1,18 @@
 # Setting up an enterprise for GitHub Copilot Business only
 
-Before you begin, see [About Enterprise Accounts For Copilot Business](https://docs.github.com/en/copilot/concepts/about-enterprise-accounts-for-copilot-business) to understand how to use a standard enterprise account for Copilot Business without consuming GitHub Enterprise Cloud licenses.
+Before you begin, see [About Enterprise Accounts For Copilot Business](https://docs.github.com/en/copilot/concepts/enterprise/about-enterprise-accounts-for-copilot-business) to understand how to use a standard enterprise account for Copilot Business without consuming GitHub Enterprise Cloud licenses.
 
 ## Create an enterprise account
 
-If you don't have an enterprise account yet, contact GitHub's [sales team](https://github.com/enterprise/contact?ref_product=copilot&ref_type=purchase&ref_style=text). They will provision you with a standard enterprise account with Copilot enabled.
+If you will pay by credit card or PayPal, you can create an enterprise account and purchase Copilot Business yourself.
 
-If you already have an enterprise account, you can use it to assign Copilot Business licenses. Continue to the next section.
+>[!NOTE] For other payment methods, contact [GitHub's Sales team](https://github.com/enterprise/contact?ref_product=copilot&ref_type=engagement&ref_style=text) and ask for an enterprise account with Copilot enabled.
+
+1. Start a trial of GitHub Enterprise Cloud.
+
+   <a href="https://github.com/account/enterprises/new?ref_product=ghec&ref_type=trial&ref_style=button&ref_plan=enterprise" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Set up a trial of GitHub Enterprise Cloud</span> {% octicon "link-external" height:16 aria-label="link-external" %}</a>
+
+1. End the trial immediately and add a credit card or PayPal as a payment method. This is required because trial enterprises cannot sign up for Copilot Business. However, with the setup described in this article, you will **not** pay for GitHub Enterprise Cloud licenses even when the trial has ended.
 
 ## Add users to your enterprise
 
@@ -20,14 +26,13 @@ Provisioned managed users appear automatically in your enterprise's **People** l
 
 Group users to scale license assignment by creating enterprise teams. Unaffiliated users can be members of enterprise teams, so you can assign Copilot Business licenses to a whole team without creating an organization. See [Create Enterprise Teams](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/create-enterprise-teams).
 
-## Convert your trial to a paid enterprise account
-
-To begin using Copilot Business after your trial, convert to a paid enterprise account. See [Setting Up A Trial Of GitHub Enterprise Cloud](https://docs.github.com/en/enterprise-cloud@latest/admin/overview/setting-up-a-trial-of-github-enterprise-cloud#purchasing-github-enterprise).
-
 ## Enable Copilot for the enterprise
 
-1. Ensure you are signed in as an enterprise administrator on GitHub.
-1. To purchase GitHub Copilot for your enterprise, [contact GitHub's Sales team](https://github.com/enterprise/contact?ref_product=copilot&ref_type=engagement&ref_style=text).
+An enterprise owner must purchase a Copilot Business plan so you can start assigning licenses to users.
+
+If you pay by credit card or PayPal, you can [subscribe to Copilot Business](https://github.com/github-copilot/purchase?ref_product=copilot&ref_type=purchase&ref_style=button&ref_plan=business) yourself.
+
+For other payment methods, [contact GitHub's Sales team](https://github.com/enterprise/contact?ref_product=copilot&ref_type=engagement&ref_style=text).
 
 ## Assign Copilot licenses
 
@@ -40,7 +45,7 @@ For detailed steps, see [Grant Access](https://docs.github.com/en/copilot/how-to
 After you assign licenses, you can centrally govern how members use Copilot:
 
 * **Policies**. Control feature availability with policies in AI Controls.
-* **Enterprise managed settings**. Distribute client governance and extensibility configuration from a centrally defined source. For example, you can disable bypass mode, restrict plugins, and set the default model for new conversations. See [Configure Enterprise Managed Settings](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/configure-enterprise-managed-settings).
+* **Enterprise managed settings**. Distribute client governance and extensibility configuration from a centrally defined source. For example, you can disable bypass mode, restrict plugins, and set the default model for new conversations. See [Get Started](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/use-managed-settings/get-started).
 
 To use server-managed settings, you need an organization and a `.github-private` repository, which requires a GitHub Enterprise license for the user who creates them. Alternatively, you can deploy managed settings through MDM or a file-based deployment without creating an organization.
 

@@ -33,8 +33,12 @@ If you use the REST API for secret scanning, you can use the `Secret type` to re
 | Extended metadata | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | Some |
 | Base64 format support | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | Some |
 
+
+
 > [!NOTE]
-> Validity and extended metadata checks are only available to users with GitHub Team or GitHub Enterprise who enable the feature as part of GitHub Secret Protection.
+> Validity{% ifversion secret-scanning-extended-metadata-checks %} and extended metadata checks for partner patterns are only available to users with GitHub Team or GitHub Enterprise who enable the feature as part of GitHub Secret Protection.
+
+{% endif %}
 
 ## Supported generic patterns
 
@@ -89,14 +93,14 @@ Precision levels are estimated based on the pattern type's typical false positiv
 
 ## Supported AI-detected patterns
 
-Secret scanning uses Copilot to detect generic secrets using AI. See [Security And Quality Ai Features](https://docs.github.com/en/code-security/responsible-use/security-and-quality-ai-features).
+Secret scanning uses Copilot to detect generic secrets using AI.{% ifversion fpt or ghec %} See [Security And Quality Ai Features](https://docs.github.com/en/code-security/responsible-use/security-and-quality-ai-features).
 
 | Provider | Token |
 |----------|:--------------------|
 |  Generic | password |
 
 >[!NOTE] Push protection and validity checks are not supported for passwords.
-
+{% endif %}
 
 ## Supported provider patterns
 

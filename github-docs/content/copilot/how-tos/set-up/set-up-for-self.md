@@ -4,12 +4,12 @@
 
 There are a few ways that you can get access to GitHub Copilot:
 
-* **Use Copilot Free**. Get a limited experience of Copilot with up to 2,000 inline suggestion requests and limited chat and agent usage-no paid plan required. See [Individual Plans](https://docs.github.com/en/copilot/concepts/billing/individual-plans).
+* **Use Copilot Free**. Get a limited experience of Copilot with up to 2,000 inline suggestion requests and limited chat and agent usage-no paid plan required. See [Plans](https://docs.github.com/en/copilot/get-started/plans).
 
 * **Sign up for a paid plan**. You can subscribe to one of these plans:
 
   * **Copilot Pro**, which includes access to premium models and a monthly allowance of AI credits. [Subscribe to Copilot Pro](https://github.com/github-copilot/signup?ref_product=copilot&ref_type=purchase&ref_style=text&ref_plan=pro).
-  * **Copilot Pro+**, which includes a higher monthly allowance of AI credits and access to all available models. [Subscribe to Copilot Pro+](https://github.com/github-copilot/signup?ref_product=copilot&ref_type=purchase&ref_style=text&ref_plan=pro).
+  * **Copilot Pro+**, which includes a higher monthly allowance of AI credits and access to all available models. [Subscribe to Copilot Pro+](https://github.com/github-copilot/signup?ref_product=copilot&ref_type=purchase&ref_style=text&ref_plan=pro-plus).
   * **Copilot Max**, which includes advanced AI models and our highest individual monthly allowance of AI credits. [Subscribe to Copilot Max](https://github.com/settings/billing/licensing?ref_product=copilot&ref_type=purchase&ref_style=text&ref_plan=max).
 
 * **Use Copilot through your organization or enterprise**. If you're part of an organization or enterprise with a Copilot plan, you can request access at [https://github.com/settings/copilot](https://github.com/settings/copilot) under "Get Copilot from an organization."
@@ -28,7 +28,7 @@ If you want to use Copilot in the command line, install the Copilot extension fo
 
 ## 4. Use Copilot in Windows Terminal
 
-If you want to chat with Copilot in Windows Terminal, connect Copilot with Terminal Chat in Windows Terminal Canary. See [Quickstart?Tool=Windowsterminal](https://docs.github.com/en/copilot/get-started/quickstart?tool=windowsterminal).
+If you want to chat with Copilot in Windows Terminal, connect Copilot with Terminal Chat in Windows Terminal Canary. See [Quickstart For Using GitHub Copilot In Your Ide](https://docs.github.com/en/copilot/get-started/quickstart-for-using-github-copilot-in-your-ide).
 
 ## 5. Set up networking (if necessary)
 
@@ -50,6 +50,6 @@ If you have your own Copilot plan (instead of using your organization or enterpr
 
 Start using Copilot to help you write code faster and more efficiently. For all the ways you can use Copilot, see [How Tos](https://docs.github.com/en/copilot/how-tos). Copilot code suggestions, Copilot Chat in GitHub, and Copilot Chat in your IDE are a great place to start.
 
-To get started with agent-driven development in the GitHub Copilot app, see [Getting Started](https://docs.github.com/en/copilot/how-tos/github-copilot-app/getting-started).
+To get started with agent-driven development in the GitHub Copilot app, see [Quickstart Copilot App](https://docs.github.com/en/copilot/get-started/quickstart-copilot-app).
 
 To learn how to best use Copilot, see [Best Practices](https://docs.github.com/en/copilot/get-started/best-practices) and [Prompt Engineering](https://docs.github.com/en/copilot/concepts/prompting/prompt-engineering).

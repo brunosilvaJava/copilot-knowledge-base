@@ -27,6 +27,9 @@ When you install the SDK, the Copilot runtime is included automatically (Node.js
 
 ## Quick start
 
+> [!NOTE]
+> Each SDK has a minimum language runtime requirement—see the Prerequisites section of the [Node.js](https://github.com/github/copilot-sdk/tree/main/nodejs/README.md#prerequisites), [Python](https://github.com/github/copilot-sdk/tree/main/python/README.md#prerequisites), [Go](https://github.com/github/copilot-sdk/tree/main/go/README.md#prerequisites), [Rust](https://github.com/github/copilot-sdk/tree/main/rust/README.md#prerequisites), [Java](https://github.com/github/copilot-sdk/tree/main/java/README.md#prerequisites), or [.NET](https://github.com/github/copilot-sdk/tree/main/dotnet/README.md#prerequisites) README—since an unsupported runtime (e.g. Python below the stated floor) can cause `pip`/package managers to silently resolve an outdated SDK release instead of reporting a version conflict.
+
 
 
 #### TypeScript
@@ -212,4 +215,4 @@ Session state persists at `~/.copilot/session-state/{sessionId}/`.
 
 * **[Byok](https://docs.github.com/en/copilot/how-tos/copilot-sdk/auth/byok)**: Use your own model provider keys
 * **[Session Persistence](https://docs.github.com/en/copilot/how-tos/copilot-sdk/features/session-persistence)**: Advanced session management
-* **[Getting Started](https://docs.github.com/en/copilot/how-tos/copilot-sdk/getting-started)**: Build a complete app
+* **[SDK Quickstart](https://docs.github.com/en/copilot/get-started/sdk-quickstart)**: Build a complete app

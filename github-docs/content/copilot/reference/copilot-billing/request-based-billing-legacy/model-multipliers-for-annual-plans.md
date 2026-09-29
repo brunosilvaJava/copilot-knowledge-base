@@ -23,7 +23,6 @@ The following table shows the model multipliers per supported model.
 >
 > * Claude Sonnet 4.6
 > * GPT-5.4 mini
-> * The multiplier for MAI-Code-1-Flash is a promotional rate.
 > 
 > If you use auto model selection in Copilot Chat, Copilot CLI, GitHub Copilot app, or Copilot cloud agent, you qualify for a 10% discount. For example, if a model has a multiplier of 1x you'll be billed at 0.9x instead.
 
@@ -40,4 +39,4 @@ Copilot code review has a model multiplier of 13. This means each time Copilot r
 ## Further reading
 
 * To learn more about premium requests, see [Copilot Requests](https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/copilot-requests).
-* To understand more about how the new usage-based billing model works, see [Usage Based Billing For Individuals](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals).
+* To understand more about how the new usage-based billing model works, see [Billing](https://docs.github.com/en/copilot/concepts/billing-and-usage/individuals/billing).

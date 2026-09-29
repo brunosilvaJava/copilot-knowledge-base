@@ -12,6 +12,9 @@
 
 You can use the `/sandbox` slash command to grant extra paths, adjust network access, or turn sandboxing on or off.
 
+> [!NOTE]
+> If you get your Copilot license from an enterprise, some or all sandbox settings may be controlled by enterprise managed settings. A managed setting is labeled `(managed)` in the `/sandbox` interface and can't be changed.
+
 For a conceptual overview of cloud and local sandboxes for Copilot, see [About Cloud And Local Sandboxes](https://docs.github.com/en/copilot/concepts/about-cloud-and-local-sandboxes).
 
 ## Opening the sandbox configuration
@@ -28,7 +31,7 @@ The **General** tab controls the top-level sandbox behavior. When enterprise man
 | Setting | Description |
 | --- | --- |
 | **Enable sandbox** | Run shell commands inside the sandbox. You can also toggle this with `/sandbox enable` and `/sandbox disable`. |
-| **Allow sandbox bypass** | Let the model request that individual commands run outside the sandbox, subject to approval. Turned on by default. For more information, see [Allowing sandbox bypass](#allowing-sandbox-bypass). |
+| **Allow sandbox bypass** | Let the model request that individual commands run outside the sandbox, subject to approval. A bypass prompt can also let you disable sandboxing for the rest of the current session. Turned on by default. For more information, see [Allowing sandbox bypass](#allowing-sandbox-bypass). |
 | **Sandbox MCP servers** | Run MCP servers inside the sandbox. Turned on by default. |
 | **Sandbox LSP servers** | Run language servers (LSP servers) inside the sandbox. Turned on by default. |
 
@@ -38,6 +41,8 @@ The **Allow sandbox bypass** setting controls what happens when Copilot can't ru
 
 * **On (default)**: If a command fails inside the sandbox, you are prompted to allow Copilot to run the command outside the sandbox. Your response to this prompt applies to this specific attempt to run the command. Optionally, you can choose to disable the sandbox for the rest of the session (if permitted by your enterprise), or you can enter an instruction for Copilot to work on instead.
 * **Off**: If Copilot can't run a command successfully in the sandbox, it stops working on the task and reports the failure.
+
+If enterprise managed settings set `sandbox.allowBypass` to `false`, you cannot approve individual commands to run outside the sandbox or disable sandboxing for the rest of the session. If managed settings require sandboxing but the effective policy permits bypass, you cannot turn sandboxing off through ordinary settings, but you can disable it for the rest of the current session—either from an active bypass permission prompt or by running `/sandbox disable`—without loosening the saved policy.
 
 ## Configuring authentication settings
 

@@ -77,9 +77,20 @@ With both methods, we use the `verified_signature?` to confirm if a commit has a
 
 
 
-You can always push local commits to the branch if the commits are signed and verified. You can also merge signed and verified commits into the branch using a pull request. However, you cannot squash and merge a pull request into the branch on GitHub unless you are the author of the pull request. You can squash and merge pull requests locally. For more information, see [Checking Out Pull Requests Locally](https://docs.github.com/en/pull-requests/how-tos/review-pull-requests/checking-out-pull-requests-locally).
+You can push local commits to the branch if the commits are signed and verified.
+
+
+
+You can also merge signed and verified commits into the branch using a pull request. When GitHub evaluates whether a pull request can be merged, it creates a test merge commit whose parents are the latest commit on the base branch and the pull request's head commit. GitHub checks the commits introduced by this test merge, including commits from the head branch. As a result, unsigned commits on the head branch can block a squash merge, even though GitHub would sign the final squash commit. This restriction can also apply to the author of the pull request.
+
+To merge a blocked pull request, rewrite and sign the unsigned commits on the head branch, or ask someone with permission to bypass the applicable protections to merge the pull request.
+
+
+
+You can squash and merge pull requests locally, but you must sign the resulting commit before pushing it to the branch. If another protection requires changes to be made through a pull request, you may also need bypass permissions to push the locally merged commit. See [Checking Out Pull Requests Locally](https://docs.github.com/en/pull-requests/how-tos/review-pull-requests/checking-out-pull-requests-locally) and [Signing Commits](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits).
 
  For more information about merge methods, see [About Merge Methods On GitHub](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github).
+
 
 ## Require a pull request before merging
 
@@ -114,9 +125,7 @@ For complex pull requests that require many reviews, requiring an approval from 
 
 Optionally, you can require all comments on the pull request to be resolved before it can be merged to a branch. This ensures that all comments are addressed or acknowledged before merge.
 
-
 Optionally, you can require a merge type of merge, squash, or rebase. This means the targeted branches may only be merged based on the allowed type. Additionally if the repository has disabled a merge method and the ruleset required a different method, the merge will be blocked. See [About Merge Methods On GitHub](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github).
-
 
 
 
@@ -198,6 +207,25 @@ Enabling force pushes will not override any other rules. For example, if a branc
 You cannot enable force pushes for a branch if a site administrator has blocked force pushes to all branches in your repository. For more information, see [Enforcing Repository Management Policies In Your Enterprise](https://docs.github.com/en/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-repository-management-policies-in-your-enterprise).
 
 If a site administrator has blocked force pushes to the default branch only, you can still enable force pushes for any other branch or tag.
+
+
+
+## Require secret scanning alerts are resolved
+
+> [!NOTE]
+> The rule to require secret scanning alerts to be resolved before merging is in public preview and subject to change.
+
+
+If your repositories use secret scanning, you can prevent a pull request from merging when either of these conditions applies:
+
+* A secret scanning scan has not completed for the head commit of the pull request.
+* A commit in the pull request introduced an open secret scanning alert that matches a secret type selected in the ruleset.
+
+You can configure the rule for provider, custom, and generic patterns. AI-detected secrets are not supported.
+
+For more information, see [Block Merges With Secrets](https://docs.github.com/en/code-security/how-tos/secure-your-secrets/prevent-future-leaks/block-merges-with-secrets).
+
+
 
 ## Require code scanning results
 

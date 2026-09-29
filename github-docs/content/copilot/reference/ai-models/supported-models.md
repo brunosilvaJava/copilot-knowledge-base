@@ -18,7 +18,7 @@ This table lists the AI models available in Copilot, along with their release st
 | Model name                                             | Provider  | Release status             |
 |--------------------------------------------------------|-----------|----------------------------|
 | {% for model in tables.copilot.model-release-status %} |
-| {{ model.name }}{% if model.name == 'GPT-5.4 nano' %}[^gpt54nano]{% endif %}{% if model.name == 'MAI-Code-1-Flash' or model.name == 'MAI-Code-1.1-Flash' %}[^mai-code-1-flash]{% endif %}{% if model.name == 'Claude Fable 5' or model.name == 'Claude Fable 5.1' %}[^claude-fable-5]{% endif %}| {{ model.provider }} | {{ model.release_status }} |
+| {{ model.name }}{% if model.name == 'GPT-5.4 nano' %}[^gpt54nano]{% endif %}{% if model.name == 'MAI-Code-1.1-Flash' %}[^mai-models]{% endif %}{% if model.name == 'Claude Fable 5' or model.name == 'Claude Fable 5.1' %}[^claude-fable-5]{% endif %}| {{ model.provider }} | {{ model.release_status }} |
 | {% endfor %}                                           |
 
 {% endrowheaders %}
@@ -27,7 +27,7 @@ This table lists the AI models available in Copilot, along with their release st
 
 ## Supported AI models in Auto model selection
 
-This table lists the supported AI models for Auto model selection. Available models may be limited by model policies. For example, as the long term support model, GPT-5.3-Codex will be used in the event no other models are available. See[Fallback And Lts Models](https://docs.github.com/en/copilot/concepts/models/fallback-and-lts-models) and [Auto Model Selection](https://docs.github.com/en/copilot/concepts/models/auto-model-selection).
+This table lists the supported AI models for Auto model selection. Available models may be limited by model policies. For example, as the long term support model, GPT-5.3-Codex will be used in the event no other models are available. See [Fallback And Lts Models](https://docs.github.com/en/copilot/concepts/models/fallback-and-lts-models) and [Auto Model Selection](https://docs.github.com/en/copilot/concepts/models/auto-model-selection).
 
 {% rowheaders %}
 
@@ -58,11 +58,12 @@ Choosing a larger context window or higher reasoning will impact AI credits cons
 | Model | 1 million token context window | Configurable reasoning |
 | --- | --- | --- |
 | Claude Sonnet 4.6 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
-| Claude Opus 4.6 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
 | Claude Opus 4.7 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
 | Claude Opus 4.8 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
 | Claude Opus 5 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
+| Claude Opus 5.5 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
 | Claude Sonnet 5 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
+| Claude Sonnet 5.5 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
 | Claude Opus 4.8 (fast mode) (preview) | {% octicon "x" aria-label="Not supported" %} | {% octicon "check" aria-label="Supported" %} |
 | Claude Fable 5 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
 | Claude Fable 5.1 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
@@ -72,6 +73,10 @@ Choosing a larger context window or higher reasoning will impact AI credits cons
 | GPT-5.6 Luna | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
 | GPT-5.6 Sol | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
 | GPT-5.6 Terra | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
+| GPT-6 Astra | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
+| GPT-6 Luna | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
+| GPT-6 Sol | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
+| GPT-6.1 Sol | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
 | Kimi K3 | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
 
 {% endrowheaders %}
@@ -101,11 +106,10 @@ Some Copilot models require minimum versions of supported IDEs or Copilot extens
 
 | Model                                                    | Visual Studio Code | Visual Studio | JetBrains IDEs | Xcode | Eclipse |
 |----------------------------------------------------------|----------------------------------------------|------------------------------------------|----------------|-------|---------|
-| Gemini 3.1 Pro       | `v1.115.0` | `17.14.22` or `18.1.0`         | `1.5.62` | `0.46.0` | `0.14.0` |
 | Gemini 3.5 Flash     | `v1.115.0` | `17.14.22` or `18.1.0`         | `1.5.62` | `0.46.0` | `0.14.0` |
 | Gemini 3.6 Flash     | `v1.128.0` | `17.14.22` or `18.1.0`         | TBD | TBD | TBD |
 | Gemini 3.7 Flash     | `v1.128.0` | `17.14.22` or `18.1.0`         | TBD | TBD | TBD |
-| GPT-5.2-Codex        | No minimum listed | `17.14.19` or `18.0.0`         | `1.5.61` | `0.45.0` | `0.13.0` |
+| Gemini 3.8 Flash     | TBD | `17.14.22` or `18.1.0`         | TBD | TBD | TBD |
 | GPT-5.3-Codex        | `v1.104.1` | `17.14.19`                     | `1.5.61` | `0.45.0` | `0.13.0` |
 | GPT-5.4              | `v1.104.1` | `17.14.19`                     | `1.5.66` | `0.47.0` | `0.15.0` |
 | GPT-5.4 mini         | `v1.104.1` | `17.14.19`                     | `1.5.66` | `0.47.0` | `0.15.0` |
@@ -113,17 +117,23 @@ Some Copilot models require minimum versions of supported IDEs or Copilot extens
 | GPT-5.6 Luna         | `1.128.0` | TBD | TBD | TBD | TBD |
 | GPT-5.6 Sol          | `1.128.0` | TBD | TBD | TBD | TBD |
 | GPT-5.6 Terra        | `1.128.0` | TBD | TBD | TBD | TBD |
+| GPT-6 Astra         | `1.136.1` | `17.14.19` | TBD | TBD | TBD |
+| GPT-6 Luna          | TBD | `17.14.19` | TBD | TBD | TBD |
+| GPT-6 Sol           | TBD | `17.14.19` | TBD | TBD | TBD |
+| GPT-6.1 Sol          | TBD | `17.14.19` | TBD | TBD | TBD |
 | Claude Opus 4.8      | `v1.118` | `17.14.6`                     | TBD | TBD | TBD |
 | Claude Opus 5       | `v1.128.0` | `17.14.22` | TBD | TBD | TBD |
+| Claude Opus 5.5      | TBD | `17.14.6` | TBD | TBD | TBD |
 | Claude Sonnet 5  | `v1.124` | `17.14.6` | TBD | TBD | TBD |
+| Claude Sonnet 5.5 | TBD | `17.14.6` | TBD | TBD | TBD |
 | Claude Fable 5      | `v1.124` | `17.14.6`                    | TBD | TBD | TBD |
 | Claude Fable 5.1    | TBD | TBD                    | TBD | TBD | TBD |
 | Kimi K2.7 Code     | `v1.127` | `17.14.6`            | `1.9.1-251` | TBD | TBD |
 | Kimi K3     | `v1.131` | TBD            | TBD | TBD | TBD |
-| MAI-Code-1-Flash    | `v1.121` | TBD                            | TBD | TBD | TBD |
 | MAI-Code-1.1-Flash  | `v1.121` | TBD                            | TBD | TBD | TBD |
 | Grok 4.5             | TBD | `17.14.19` | TBD | TBD | TBD |
 | Grok 4.6             | TBD | TBD | TBD | TBD | TBD |
+| Grok 4.7             | TBD | `17.14.19` | TBD | TBD | TBD |
 
 {% endrowheaders %}
 
@@ -144,12 +154,14 @@ The following table shows which AI models are available in each Copilot plan. Fo
 | Available models                               | Copilot Pro  | Copilot Pro+ | Copilot Max | Copilot Business | Copilot Enterprise |
 |---------------------------------------------------------|-------------------------------------------------|-----------------------------------------------------|------------------------------------------------|-----------------------------------------------------|-------------------------------------------------------|
 | {% for model in tables.copilot.model-supported-plans %} |
-| {{ model.name }}{% if model.name == 'GPT-5.4 nano' %}[^gpt54nano]{% endif %}{% if model.name == 'Claude Fable 5' or model.name == 'Claude Fable 5.1' %}[^claude-fable-5]{% endif %} | {% if model.pro == true %}{% octicon "check" aria-label="Included" %}{% else %}{% octicon "x" aria-label="Not included" %}{% endif %} | {% if model.pro_plus == true %}{% octicon "check" aria-label="Included" %}{% else %}{% octicon "x" aria-label="Not included" %}{% endif %} | {% if model.max == true %}{% octicon "check" aria-label="Included" %}{% else %}{% octicon "x" aria-label="Not included" %}{% endif %} | {% if model.business == true %}{% octicon "check" aria-label="Included" %}{% else %}{% octicon "x" aria-label="Not included" %}{% endif %} | {% if model.enterprise == true %}{% octicon "check" aria-label="Included" %}{% else %}{% octicon "x" aria-label="Not included" %}{% endif %} |
+| {{ model.name }}{% if model.name == 'GPT-5.4 nano' %}[^gpt54nano]{% endif %}{% if model.name == 'Claude Fable 5' or model.name == 'Claude Fable 5.1' %}[^claude-fable-5]{% endif %}{% if model.name == 'Claude Sonnet 4.6' %}[^claude-sonnet-46-plans]{% endif %} | {% if model.pro == true %}{% octicon "check" aria-label="Included" %}{% else %}{% octicon "x" aria-label="Not included" %}{% endif %} | {% if model.pro_plus == true %}{% octicon "check" aria-label="Included" %}{% else %}{% octicon "x" aria-label="Not included" %}{% endif %} | {% if model.max == true %}{% octicon "check" aria-label="Included" %}{% else %}{% octicon "x" aria-label="Not included" %}{% endif %} | {% if model.business == true %}{% octicon "check" aria-label="Included" %}{% else %}{% octicon "x" aria-label="Not included" %}{% endif %} | {% if model.enterprise == true %}{% octicon "check" aria-label="Included" %}{% else %}{% octicon "x" aria-label="Not included" %}{% endif %} |
 | {% endfor %}                                            |
 
 {% endrowheaders %}
 
 [^gpt54nano]: GPT-5.4 nano is currently only available in the Codex Visual Studio Code extension (Copilot Pro+ only) and is not available in Copilot Chat.
+
+[^claude-sonnet-46-plans]: Claude Sonnet 4.6 was retired on September 1, 2026, but remains available to individual Copilot subscribers on annual Copilot Pro and Copilot Pro+ plans. It is not available to subscribers on monthly plans.
 
 
 > [!NOTE]
@@ -179,7 +191,7 @@ Access to evaluation models in auto model selection  for users Copilot plans for
 
 1. For the **Evaluation models in Copilot auto model selection** setting, select **Disabled** from the dropdown.
 
-[^mai-code-1-flash]: MAI models are continuously improving models. Performance and behavior may evolve over time as new checkpoints are released.
+[^mai-models]: MAI models are continuously improving models. Performance and behavior may evolve over time as new checkpoints are released.
 
 ## Utility models
 
@@ -195,7 +207,7 @@ The following models are currently used as utility models:
 
 ## Models eligible for default enablement
 
-For enterprises on a Copilot Business or Copilot Enterprise plan, a policy controls whether unconfigured generally available (GA) models are enabled or disabled by default. See [Default Availability](https://docs.github.com/en/copilot/concepts/models/default-availability).
+For enterprises on a Copilot Business or Copilot Enterprise plan, a policy controls whether unconfigured generally available (GA) models are enabled or disabled by default. See [Default Model Availability](https://docs.github.com/en/copilot/concepts/enterprise/default-model-availability).
 
 
 The default policy applies to models that you have not explicitly configured. These models are indicated in your enterprise or organization's model settings with the **Delegate to Default Policy** label. When a new model is released, it inherits the default until you explicitly configure it.
@@ -230,6 +242,6 @@ The following table lists AI models that are retired or scheduled for retirement
 
 ## Next steps
 
-* To get up and running with Copilot, see [Quickstart](https://docs.github.com/en/copilot/get-started/quickstart).
+* To get up and running with Copilot, see [Quickstart For Using GitHub Copilot On GitHub Com](https://docs.github.com/en/copilot/get-started/quickstart-for-using-github-copilot-on-github-com) and [Quickstart For Using GitHub Copilot In Your Ide](https://docs.github.com/en/copilot/get-started/quickstart-for-using-github-copilot-in-your-ide) .
 * To configure which models are available to you, see [Configure Access To Ai Models](https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-access-to-ai-models).
 * To learn more about Responsible Use and Responsible AI, see [Copilot Trust Center](https://copilot.github.trust.page/) and [Responsible Use](https://docs.github.com/en/copilot/responsible-use).

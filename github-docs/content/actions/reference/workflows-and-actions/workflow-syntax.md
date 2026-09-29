@@ -224,6 +224,68 @@ on:
 ```
 
 
+## `on.merge_group.<branches|branches-ignore>`
+
+When using the `merge_group` event, you can configure a workflow to run only for merge groups that target specific branches.
+
+Use the `branches` filter when you want to include branch name patterns or when you want to both include and exclude branch name patterns. Use `branches-ignore` when you only want to exclude branch name patterns. You cannot use both `branches` and `branches-ignore` for the same event in a workflow.
+
+The `branches` and `branches-ignore` filters accept glob patterns that use characters like `*`, `**`, `+`, `?`, `!` and others to match more than one branch name. If a name contains any of these characters and you want a literal match, you need to escape each of these special characters with `\`. For more information about glob patterns, see [Workflow Syntax For GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet).
+
+### Example: Including branches
+
+The patterns defined in `branches` are evaluated against the target branch's name. For example, the following workflow will run whenever there is a `merge_group` event for a merge group that targets:
+
+* A branch named `main`
+* A branch whose name starts with `releases/`
+
+```yaml
+on:
+  merge_group:
+    types: [checks_requested]
+    branches:
+      - main
+      - 'releases/**'
+```
+
+### Example: Excluding branches
+
+When a pattern matches the `branches-ignore` pattern, the workflow will not run. The patterns defined in `branches-ignore` are evaluated against the target branch's name. For example, the following workflow will run whenever there is a `merge_group` event unless the merge group targets:
+
+* A branch named `canary`
+* A branch whose name matches `releases/**-alpha`, like `releases/beta/3-alpha` 
+
+```yaml
+on:
+  merge_group:
+    types: [checks_requested]
+    branches-ignore:
+      - canary
+      - 'releases/**-alpha'
+```
+
+### Example: Including and excluding branches
+
+You cannot use `branches` and `branches-ignore` to filter the same event in a single workflow. If you want to both include and exclude branch patterns for a single event, use the `branches` filter along with the `!` character to indicate which branches should be excluded.
+
+If you define a branch with the `!` character, you must also define at least one branch without the `!` character. If you only want to exclude branches, use `branches-ignore` instead.
+
+The order that you define patterns matters.
+
+* A matching negative pattern (prefixed with `!`) after a positive match will exclude the branch.
+* A matching positive pattern after a negative match will include the branch again.
+
+The following workflow will run on `merge_group` events for merge groups that target `releases/10` or `releases/beta/mona`, but not for merge groups that target `releases/10-alpha` or `releases/beta/3-alpha` because the negative pattern `!releases/**-alpha` follows the positive pattern. 
+
+```yaml
+on:
+  merge_group:
+    types: [checks_requested]
+    branches:
+      - 'releases/**'
+      - '!releases/**-alpha'
+```
+
 ## `on.push.<branches|tags|branches-ignore|tags-ignore>`
 
 
@@ -1111,6 +1173,48 @@ In this example, multiple pushes to a `release/1.2.3` branch would not cancel in
 
 
 
+
+
+## `cache-mode`
+
+Use `cache-mode` to control the level of GitHub Actions cache access that jobs in the workflow are granted. Setting `cache-mode` at the top level applies to every job in the workflow, unless a job overrides it with [`jobs.<job_id>.cache-mode`](#jobsjob_idcache-mode).
+
+Access is enforced with scoped cache tokens, so a job cannot restore or save caches beyond the mode it is granted. `cache-mode` accepts the following values.
+
+| Value | Restore caches | Save caches |
+| ----- | -------------- | ----------- |
+| `read` | Yes | No |
+| `write` | Yes | Yes |
+| `write-only` | No | Yes |
+| `none` | No | No |
+
+If you omit `cache-mode`, a `read` or `write` default is used based on the trigger type. For trigger-dependent effective defaults, see [Dependency Caching](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching#defaults).
+
+> [!WARNING]
+> Explicitly declaring `cache-mode: write` or `cache-mode: write-only` on low-trust triggers can bypass the secure default read-only cache restriction and reintroduce cache-poisoning risk. For guidance and mitigations, see [Dependency Caching](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching#bypassing-the-default-untrusted-trigger-cache-restriction).
+
+When a cache operation is not permitted by the effective mode, the cache step logs an informational message and continues. The job and workflow do not fail. A skipped restore is treated as a cache miss; a skipped save is simply not performed. For more information, see [Dependency Caching](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching#controlling-cache-access-with-cache-mode).
+
+### Example of `cache-mode`
+
+```yaml
+cache-mode: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/cache@v4
+
+        with:
+          path: ~/.npm
+          key: {% raw %}npm-${{ hashFiles('**/package-lock.json') }}{% endraw %}
+```
+
+
+
 ## `jobs`
 
 A workflow run is made up of one or more `jobs`, which run in parallel by default. To run jobs sequentially, you can define dependencies on other jobs using the `jobs.<job_id>.needs` keyword.
@@ -1438,7 +1542,7 @@ For public repositories, jobs using the workflow labels shown in the table below
         <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md">ubuntu-latest</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md">ubuntu-24.04</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md">ubuntu-22.04</a></code>,
-        <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Readme.md">ubuntu-26.04</a></code> (Public preview)
+        <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Readme.md">ubuntu-26.04</a></code>
       </td>
     </tr>
     <tr>
@@ -1463,7 +1567,7 @@ For public repositories, jobs using the workflow labels shown in the table below
       <td>
         <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Arm64-Readme.md">ubuntu-24.04-arm</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Arm64-Readme.md">ubuntu-22.04-arm</a></code>,
-        <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Arm64-Readme.md">ubuntu-26.04-arm</a></code> (Public preview)
+        <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Arm64-Readme.md">ubuntu-26.04-arm</a></code>
       </td>
     </tr>
     <tr>
@@ -1543,7 +1647,7 @@ For internal and private repositories, jobs using the workflow labels shown in t
         <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md">ubuntu-latest</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md">ubuntu-24.04</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md">ubuntu-22.04</a></code>,
-        <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Readme.md">ubuntu-26.04</a></code> (Public preview)
+        <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Readme.md">ubuntu-26.04</a></code>
       </td>
     </tr>
     <tr>
@@ -1567,7 +1671,7 @@ For internal and private repositories, jobs using the workflow labels shown in t
       <td>
         <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Arm64-Readme.md">ubuntu-24.04-arm</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Arm64-Readme.md">ubuntu-22.04-arm</a></code>,
-        <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Arm64-Readme.md">ubuntu-26.04-arm</a></code> (Public preview)
+        <code><a href="https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Arm64-Readme.md">ubuntu-26.04-arm</a></code>
       </td>
     </tr>
     <tr>
@@ -2023,6 +2127,33 @@ In this example, multiple pushes to a `release/1.2.3` branch would not cancel in
 
 
 
+
+
+## `jobs.<job_id>.cache-mode`
+
+Use `jobs.<job_id>.cache-mode` to set the level of GitHub Actions cache access for a single job. A value set here overrides any workflow-level [`cache-mode`](#cache-mode) for this job only.
+
+The accepted values are `read`, `write`, `write-only`, and `none`, with the same meanings as the top-level key. If neither the job nor the workflow sets `cache-mode`, a trigger-based default applies. For more information about each value, see [`cache-mode`](#cache-mode) and [Dependency Caching](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching#defaults).
+
+> [!WARNING]
+> Explicitly declaring `cache-mode: write` or `cache-mode: write-only` on low-trust triggers can bypass the secure default read-only cache restriction and reintroduce cache-poisoning risk. For guidance and mitigations, see [Dependency Caching](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching#bypassing-the-default-untrusted-trigger-cache-restriction).
+
+You can also set `cache-mode` on a job that calls a reusable workflow to limit the cache access granted to the called workflow. For more information, see [Reusing Workflow Configurations](https://docs.github.com/en/actions/reference/workflows-and-actions/reusing-workflow-configurations#supported-keywords-for-jobs-that-call-a-reusable-workflow) and [Reuse Workflows](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows#controlling-cache-access-in-reusable-workflows).
+
+### Example of `jobs.<job_id>.cache-mode`
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    cache-mode: write
+  test:
+    runs-on: ubuntu-latest
+    cache-mode: read
+```
+
+
+
 ## `jobs.<job_id>.outputs`
 
 You can use `jobs.<job_id>.outputs` to create a `map` of outputs for a job. Job outputs are available to all downstream jobs that depend on this job. For more information on defining job dependencies, see [`jobs.<job_id>.needs`](/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idneeds).
@@ -2310,7 +2441,7 @@ We strongly recommend that you include the version of the action you are using b
 
 Some actions require inputs that you must set using the [`with`](#jobsjob_idstepswith) keyword. Review the action's README file to determine the inputs required.
 
-Actions are either JavaScript files or Docker containers. If the action you're using is a Docker container you must run the job in a Linux environment. For more details, see [`runs-on`](#jobsjob_idruns-on).
+Actions can be JavaScript, composite, or Docker container actions. If the action you're using is a Docker container you must run the job in a Linux environment. For more details, see [`runs-on`](#jobsjob_idruns-on).
 
 ### Example: Using versioned actions
 
@@ -2914,6 +3045,10 @@ Use `jobs.<job_id>.strategy.matrix` to define a matrix of different job configur
 A matrix will generate a maximum of 256 jobs per workflow run. This limit applies to both GitHub-hosted and self-hosted runners.
 
 The variables that you define become properties in the `matrix` context, and you can reference the property in other areas of your workflow file. In this example, you can use `matrix.version` and `matrix.os` to access the current value of `version` and `os` that the job is using. For more information, see [Contexts](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts).
+
+> [!NOTE]
+> The variable names are case insensitive. For example, `OS` and `os` will be treated as the same variable.
+
 
 By default, GitHub will maximize the number of jobs run in parallel depending on runner availability. The order of the variables in the matrix determines the order in which the jobs are created. The first variable you define will be the first job that is created in your workflow run.
 

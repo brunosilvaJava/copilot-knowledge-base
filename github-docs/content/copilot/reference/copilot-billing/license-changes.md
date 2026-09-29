@@ -26,7 +26,7 @@ Paying for, renewing, upgrading, downgrading, converting from a trial, or resumi
 
 For example, if you exhaust your AI credits on May 28 and renew or upgrade your plan on May 30, your allowance does not reset until June 1.
 
-Any additional usage beyond the included allowance is charged separately and is unaffected by this monthly reset. See [Usage Based Billing For Individuals](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals) and [Set Up Budgets](https://docs.github.com/en/billing/how-tos/set-up-budgets#managing-budgets-for-your-personal-account).
+Any additional usage beyond the included allowance is charged separately and is unaffected by this monthly reset. See [Billing](https://docs.github.com/en/copilot/concepts/billing-and-usage/individuals/billing) and [Set Up Budgets](https://docs.github.com/en/billing/how-tos/set-up-budgets#managing-budgets-for-your-personal-account).
 
 ## Organizations
 
@@ -34,7 +34,7 @@ What you need to know about the following actions:
 
 ### Adding seats
 
-* **Billing:** Additional Copilot seats are billed for the remainder of the current billing cycle. Charges are prorated based on the date seats are added.
+* **Billing:** Additional Copilot seats are billed for the remainder of the current billing cycle. Charges are prorated based on the date seats are added. If you pay by credit card or PayPal, you will need to pay the prorated amount for new seats upfront.
 * **Access:** Users assigned to new seats get access **immediately** after assignment.
 
 ### Removing seats
@@ -57,7 +57,7 @@ What you need to know about the following actions:
 
 ### Adding seats
 
-* **Billing:** Additional seats are billed on a prorated basis for the remainder of the current billing cycle. Included AI credits may also be prorated.
+* **Billing:** Additional seats are billed on a prorated basis for the remainder of the current billing cycle. Included AI credits may also be prorated. If you pay by credit card or PayPal, you will need to pay the prorated amount for new seats upfront.
 * **Access:** Assigned users gain **immediate access** to Copilot.
 
 ### Removing seats

@@ -24,7 +24,7 @@ It's important to understand how GitHub Code Quality uses AI credits before you 
 Code Quality usage appears in the **same billing and usage views as your other products**, not in a separate Code Quality meter. Where you look depends on how granular a breakdown you need:
 
 * **For a repository- or organization-level breakdown, download the billing usage report** from the "Billing and licensing" tab. This is the only place you can attribute Code Quality spend, including GitHub Actions minutes, down to a specific repository or organization. There's no equivalent view in the UI. See [View Productlicense Use](https://docs.github.com/en/billing/how-tos/products/view-productlicense-use).
-* **For Code Quality's AI credits usage over time, use the AI usage page** and group it by **Product** using the dropdown at the top right. This separates Code Quality from your other AI products, like Copilot, so you can track its share of the pool. To monitor the pool as a whole instead, see [Usage Based Billing For Organizations And Enterprises](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises).
+* **For Code Quality's AI credits usage over time, use the AI usage page** and group it by **Product** using the dropdown at the top right. This separates Code Quality from your other AI products, like Copilot, so you can track its share of the pool. To monitor the pool as a whole instead, see [Billing](https://docs.github.com/en/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing).
 
 ## Monitoring your spend
 
@@ -38,7 +38,7 @@ Once Code Quality is running, watch your actual usage over time so costs stay pr
 You have several levers to keep spend in check. In rough order of impact:
 
 * **Enable selectively.** Turn Code Quality on where it adds value rather than across every repository at once. See [Enable Code Quality](https://docs.github.com/en/code-security/how-tos/maintain-quality-code/enable-code-quality).
-* **Disable low-value repositories.** Disabling Code Quality on a repository frees the licenses for committers unique to it, and stops its scans and AI usage. See [Disable Code Quality](https://docs.github.com/en/code-security/how-tos/maintain-quality-code/disable-code-quality).
+* **Disable low-value repositories.** Disabling Code Quality on a repository stops its scans and AI usage immediately. It can free licenses for committers unique to that repository for the next billing period, but it doesn't reduce the charge for the current period. See [Disable Code Quality](https://docs.github.com/en/code-security/how-tos/maintain-quality-code/disable-code-quality).
 * **Set a budget.** A budget for Code Quality stops your spending automatically once you hit your limit, because the hard stop is mandatory (see below).
 * **Keep the AI findings page off.** This page is **off by default** and stays in public preview, so it only draws down AI credits if you turn it on. Repositories that enabled it during the preview keep it on. To turn it off for a repository, disable **AI findings** on the repository's **Code quality** settings page.
 

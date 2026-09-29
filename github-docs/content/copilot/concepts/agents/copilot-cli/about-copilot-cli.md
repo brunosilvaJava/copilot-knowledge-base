@@ -64,7 +64,7 @@ You can start a Copilot CLI session inside an isolated, cloud-hosted environment
 To start a cloud-backed session, run:
 
 ```bash copy
-copilot ‑‑cloud
+copilot --cloud
 ```
 
 ## Use cases for GitHub Copilot CLI
@@ -188,6 +188,10 @@ When you use Copilot CLI, Copilot can perform tasks on your behalf, such as exec
 
 You should therefore always keep security considerations in mind when using Copilot CLI, just as you would when working directly with files yourself, or running commands directly in your terminal. You should always review suggested commands carefully when Copilot CLI requests your approval.
 
+### Content exclusion
+
+For Copilot Business and Copilot Enterprise users, Copilot CLI respects content exclusion policies configured at the enterprise, organization, and repository levels. Excluded files are not used as context. For more information, see [Content Exclusion](https://docs.github.com/en/copilot/concepts/context/content-exclusion).
+
 ### Trusted directories
 
 Trusted directories control where Copilot CLI can read, modify, and execute files.
@@ -306,7 +310,7 @@ Copilot CLI can't currently support the following organization-level MCP server 
 * **MCP servers in Copilot**, which controls whether MCP servers can be used at all by Copilot.
 * **MCP Registry URL**, which controls which MCP registry Copilot will allow MCP servers to be used from.
 
-For more information about these policies, see [MCP Management](https://docs.github.com/en/copilot/concepts/mcp-management#mcp-allowlists).
+For more information about these policies, see [MCP Management](https://docs.github.com/en/copilot/concepts/enterprise/mcp-management#mcp-allowlists).
 
 ## Model usage
 

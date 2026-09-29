@@ -5,7 +5,7 @@
 
 
 > [!NOTE]
-> This article describes the features available with the CodeQL CLI 2.20.7{% elsif ghes < 3.19 %}2.21.4{% elsif ghes < 3.20 %}2.22.4{% elsif ghes < 3.21 %}2.23.9{% elsif ghes < 3.22 %}2.24.3{% elsif ghes < 3.23 %}2.25.6 bundle included in the initial release of GitHub Enterprise Server {{ allVersions[currentVersion].currentRelease }}.
+> This article describes the features available with the CodeQL CLI 2.21.4{% elsif ghes < 3.20 %}2.22.4{% elsif ghes < 3.21 %}2.23.9{% elsif ghes < 3.22 %}2.24.3{% elsif ghes < 3.23 %}2.25.6 bundle included in the initial release of GitHub Enterprise Server {{ allVersions[currentVersion].currentRelease }}.
 >
 > If your site administrator has updated your CodeQL CLI version to a newer release, please see the [GitHub Enterprise Cloud version](/enterprise-cloud@latest/{{ currentArticle }}) of this article for information on the latest features.
 
@@ -42,11 +42,13 @@ You should download the CodeQL bundle from https://github.com/github/codeql-acti
 
 
 > [!NOTE]
-> For GitHub Enterprise Server {{ allVersions[currentVersion].currentRelease }}, we recommend CodeQL CLI version 2.20.7{% elsif ghes < 3.19 %}2.21.4{% elsif ghes < 3.20 %}2.22.4{% elsif ghes < 3.21 %}2.23.9{% elsif ghes < 3.22 %}2.24.3{% elsif ghes < 3.23 %}2.25.6.
+> For GitHub Enterprise Server {{ allVersions[currentVersion].currentRelease }}, we recommend CodeQL CLI version 2.21.4{% elsif ghes < 3.20 %}2.22.4{% elsif ghes < 3.21 %}2.23.9{% elsif ghes < 3.22 %}2.24.3{% elsif ghes < 3.23 %}2.25.6.
 
 
 
-You should always use the CodeQL bundle. This ensures compatibility and gives much better performance than a separate download of the CodeQL CLI and checkout of the CodeQL queries. If you will only be running the CLI on one specific platform, download the appropriate `codeql-bundle-PLATFORM.tar.zst` file. Alternatively, you can download `codeql-bundle.tar.zst`, which contains the CLI for all supported platforms.
+You should always use the CodeQL bundle. This ensures compatibility and gives much better performance than a separate download of the CodeQL CLI and checkout of the CodeQL queries. Download the `codeql-bundle-PLATFORM.tar.zst` file for the platform where you will run the CLI. Replace `PLATFORM` with `linux64` for Linux x64, `linux-arm64` for Linux ARM64, `osx64` for macOS, or `win64` for Windows.
+
+The all-platforms bundle (`codeql-bundle.tar.zst` and `codeql-bundle.tar.gz`) is closing down and will stop being published in a future release. Download the per-platform `codeql-bundle-PLATFORM.tar.zst` file instead. In CodeQL CLI 2.27.0 and later, running the CLI from an all-platforms distribution produces a warning.
 
 There are also `tar.gz` variants of the bundle, which are identical to the `tar.zst` variants except compressed using the less efficient gzip algorithm. The only reason to download the `tar.gz` variants is if you are using older decompression tools that do not support the Zstandard compression algorithm.
 

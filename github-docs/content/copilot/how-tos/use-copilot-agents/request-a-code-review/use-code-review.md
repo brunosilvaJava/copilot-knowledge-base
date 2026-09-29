@@ -48,7 +48,7 @@ You can also request a review from Copilot through the GitHub REST API by reques
 
 ## Enabling automatic reviews
 
-By default, you manually request a review from Copilot on each pull request, in the same way you would request a review from a human. However, you can set up Copilot to automatically review all pull requests. See [Configure Automatic Review](https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-automatic-review).
+By default, you manually request a review from Copilot on each pull request, in the same way you would request a review from a human. However, you can set up Copilot to automatically review all pull requests. See [Configure Code Review](https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-code-review).
 
 ## Requesting a re-review from Copilot
 
@@ -56,7 +56,7 @@ When you push changes to a pull request that Copilot has reviewed, it won't auto
 
 To manually request a re-review from Copilot, click the {% octicon "sync" aria-label="Re-request review" %} button next to Copilot's name in the **Reviewers** menu. For more information, see [Requesting A Pull Request Review](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/requesting-a-pull-request-review).
 
-To automatically request re-reviews from Copilot on every push, enable automatic code review for the repository and select **Review new pushes** in the ruleset settings. For more information, see [Configure Automatic Review](https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-automatic-review#configuring-automatic-code-review-for-repositories-in-an-organization).
+To automatically request re-reviews from Copilot on every push, enable automatic code review for the repository and select **Review new pushes** in the ruleset settings. For more information, see [Configure Code Review](https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-code-review#configuring-automatic-code-review-for-repositories-in-an-organization).
 
 > [!NOTE] When re-reviewing a pull request, Copilot may repeat the same comments again, even if they have been dismissed with the "Resolve conversation" button or downvoted with the thumbs down (:-1:) button.
 
@@ -67,7 +67,7 @@ With review effort levels, you can choose the level of thoroughness of Copilot's
 * **Lite**: Cost-efficient review that provides targeted feedback on glaring issues such as bugs, security vulnerabilities, and style inconsistencies.
 * **Balanced**: Deeper analysis of complex logic, security-sensitive code, and cross-service changes, using a higher-reasoning model.
 
-You can select the review effort level in the pull request before you request a review from Copilot, under the **Reviewers** section where Copilot appears as a reviewer. Organization owners and repository administrators can also set a default effort level for automatic reviews.
+You can select Copilot review effort in the pull request before you request a review from Copilot, under the **Reviewers** section where Copilot appears as a reviewer. You can also set a default Copilot review effort in your settings. Organization owners and repository administrators can set a default Copilot review effort for automatic reviews.
 
 For more information, see [Code Review](https://docs.github.com/en/copilot/concepts/agents/code-review#review-effort-level).
 
@@ -81,7 +81,7 @@ Every Copilot code review includes an approval assessment in the overview commen
 
 When approvals are enabled, Copilot can submit an approving review that satisfies your repository's required-approval rule the same way a teammate's approval would. If new commits are pushed after Copilot approves, the approval is dismissed, and you can re-request a review. For more details on required reviews, see [Approving A Pull Request With Required Reviews](https://docs.github.com/en/pull-requests/how-tos/review-pull-requests/approving-a-pull-request-with-required-reviews).
 
-Approvals are off by default and can be configured at the enterprise, organization, and repository levels. Repository administrators can also use file paths to control which Copilot approvals count toward merge requirements. For configuration steps, see [Configure Automatic Review](https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-automatic-review#customizing-copilot-code-review).
+Approvals are off by default and can be configured at the enterprise, organization, and repository levels. Repository administrators can also use file paths to control which Copilot approvals count toward merge requirements. For configuration steps, see [Configure Code Review](https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-code-review#customizing-copilot-code-review).
 
 ## Customizing Copilot's reviews with custom instructions
 
@@ -308,7 +308,7 @@ These instructions explain how to use Copilot code review in Xcode. To see instr
 
 ## Prerequisites
 
-* **Access to Copilot**. See [What Is GitHub Copilot](https://docs.github.com/en/copilot/get-started/what-is-github-copilot#get-access).
+* **Access to Copilot**. See [About GitHub Copilot](https://docs.github.com/en/copilot/get-started/about-github-copilot#get-access).
 
 
 * **Compatible JetBrains IDE**. To use GitHub Copilot in JetBrains, you must have a compatible JetBrains IDE installed. GitHub Copilot is compatible with the following IDEs:
@@ -356,7 +356,7 @@ These instructions explain how to use Copilot code review in JetBrains IDEs. To 
 
 ## Prerequisites
 
-* **Access to Copilot**. See [What Is GitHub Copilot](https://docs.github.com/en/copilot/get-started/what-is-github-copilot#get-access).
+* **Access to Copilot**. See [About GitHub Copilot](https://docs.github.com/en/copilot/get-started/about-github-copilot#get-access).
 
 * **GitHub CLI**. You must have the GitHub CLI installed and authenticated. See [Quickstart](https://docs.github.com/en/github-cli/github-cli/quickstart).
 

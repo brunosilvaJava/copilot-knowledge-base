@@ -48,7 +48,7 @@ For more information, see [Dependabot On Actions](https://docs.github.com/en/cod
 
 ### Configuring the runner type for Dependabot
 
-You can configure which type of runner Dependabot uses to scan for version and security updates. By default, Dependabot uses standard **GitHub-hosted runners**. You can configure Dependabot to use **self-hosted runners** with custom labels, which allows you to integrate with existing runner infrastructure such as Actions Runner Controller (ARC).
+You can configure which type of runner Dependabot uses to scan for version and security updates. By default, Dependabot uses standard **GitHub-hosted runners**. You can configure Dependabot to use **labeled runners**, which allows you to integrate with existing runner infrastructure such as Actions Runner Controller (ARC).
 
 > [!NOTE]
 > * For security reasons, Dependabot uses GitHub-hosted runners for public repositories, even when you configure labeled runners.
@@ -59,13 +59,13 @@ To configure the runner type:
 1. Under "Dependabot", next to "Runner type", select {% octicon "pencil" aria-label="Edit runner type" %}.
 1. In the "Edit runner type for Dependabot" dialog, select the runner type you want Dependabot to use:
    * **Standard GitHub runner**.
-   * **Labeled runner**: If you select this option, Dependabot will use self-hosted runners that match the label you specify.
+   * **Labeled runner**: If you select this option, Dependabot will use {% ifversion fpt or ghec %}self-hosted or larger runners that match the label you specify.
 1. If you selected **Labeled runner**:
-   * In "Runner label", enter the label assigned to your self-hosted runners. Dependabot will use runners with this label. By default, the `dependabot` label is used, but you can specify a custom label to match your existing runner infrastructure.
+   * In "Runner label", enter the label assigned to your runners. Dependabot will use runners with this label. By default, the `dependabot` label is used, but you can specify a custom label to match your existing runner infrastructure.
    * Optionally, in "Runner group name", enter the name of a runner group if you want to target a specific group of runners.
 1. Click **Save runner selection**.
 
-
+{% endif %}
 
 
 
@@ -89,7 +89,7 @@ You can recommend that repositories in your organization use the "Extended" quer
 
 
 
-* [Enabling AI-powered security detections](#enabling-ai-powered-security-detections)
+* [Enabling AI Scan](#enabling-ai-scan)
 
 * [Expanding CodeQL analysis](#expanding-codeql-analysis)
 
@@ -112,9 +112,9 @@ You can select **Copilot Autofix** to enable Copilot Autofix for all the reposit
 
 
 
-### Enabling AI-powered security detections
+### Enabling AI Scan
 
-You can select **AI-powered security detections** to enable AI-powered security detections for all repositories in your organization that use CodeQL default setup. See [Ai Powered Security Detections](https://docs.github.com/en/code-security/concepts/code-scanning/ai-powered-security-detections).
+You can select **AI Scan** to enable AI Scan for eligible repositories in your organization where code scanning is enabled. Repositories inherit the organization setting, but repository administrators can opt out for individual repositories. See [Ai Powered Security Detections](https://docs.github.com/en/code-security/concepts/code-scanning/ai-powered-security-detections).
 
 
 

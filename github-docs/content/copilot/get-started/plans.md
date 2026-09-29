@@ -24,21 +24,11 @@ GitHub offers a variety of plans for Copilot. Choose between them depending on y
 
 * Ideal for sustained, high-volume AI power users who want access to the most AI credits available to them. This paid plan includes everything in Copilot Pro+, plus our highest individual monthly allowance of AI credits. 
 
-> [!IMPORTANT] 
-> 
-
-On April 22, 2026, new self-serve purchases of Copilot Business and Copilot Enterprise were temporarily paused. 
-
-Self-serve sign-ups **are reopening soon** for customers paying by credit card or PayPal. You might be charged prorated seat costs at sign-up. Additional usage beyond your included amount requires payment as you go. Self-serve trials remain paused.
-
-
-
-
-**GitHub Copilot Business**: To get started, [contact sales](https://github.com/enterprise/contact?ref_product=copilot&ref_type=purchase&ref_style=text).
+**GitHub Copilot Business**: [Subscribe to Copilot Business](https://github.com/github-copilot/purchase?ref_product=copilot&ref_type=purchase&ref_style=button&ref_plan=business).
 
 * Made for organizations an enterprises, this plan offers centralized management and Copilot policy control for organization members.
 
-**GitHub Copilot Enterprise**: [Contact sales](https://github.com/enterprise/contact?ref_product=copilot&ref_type=purchase&ref_style=text) to get started.
+**GitHub Copilot Enterprise**: [Subscribe to Copilot Enterprise](https://github.com/github-copilot/purchase?ref_product=copilot&ref_type=purchase&ref_style=button&ref_plan=enterprise).
 
 * Designed for enterprises using GitHub Enterprise Cloud. This plan includes all the features of Copilot Business, offers a larger monthly pool of AI credits, plus additional enterprise-grade capabilities. 
 
@@ -63,7 +53,7 @@ The table below provides an overview of differences between plans. All plans inc
 
 {% endrowheaders %}
 
-Each plan comes with an allowance of GitHub AI Credits. For more information, including how GitHub AI Credits work, see [Usage Based Billing For Individuals](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals) and [Usage Based Billing For Organizations And Enterprises](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises).
+Each plan comes with an allowance of GitHub AI Credits. For more information, including how GitHub AI Credits work, see [Billing](https://docs.github.com/en/copilot/concepts/billing-and-usage/individuals/billing) and [Billing](https://docs.github.com/en/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing).
 
 For more detail on what's uniquely available in each plan, see the following sections: 
 * [Individual plans](#individual-plans)
@@ -94,7 +84,7 @@ The following table shows what's included with each paid plan.
 
 Copilot Free and Copilot Student both have an allowance of AI credits.
 
-For more information on how GitHub AI Credits work, see [Usage Based Billing For Individuals](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals)
+For more information on how GitHub AI Credits work, see [Billing](https://docs.github.com/en/copilot/concepts/billing-and-usage/individuals/billing)
 
 ### Inline suggestions and Copilot Chat
 
@@ -188,7 +178,7 @@ With these plans you'll receive access to the following features and capabilitie
 
 Copilot usage is measured in AI credits under usage-based billing. Each license contributes AI credits to a shared enterprise pool, and usage beyond the pool is charged at $0.01 USD per AI credit. Code completions and next edit suggestions are not billed in AI credits and remain unlimited for all paid plans.
 
-For a full explanation of how AI credits work, including pooling, additional usage, and what happens when credits run out, see [Usage Based Billing For Organizations And Enterprises](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises).
+For a full explanation of how AI credits work, including pooling, additional usage, and what happens when credits run out, see [Billing](https://docs.github.com/en/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing).
 
 ### Inline suggestions and Copilot Chat
 

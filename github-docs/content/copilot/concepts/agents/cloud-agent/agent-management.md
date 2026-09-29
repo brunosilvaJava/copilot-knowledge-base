@@ -18,7 +18,7 @@ To learn more about Copilot cloud agent, see [About Cloud Agent](https://docs.gi
 
 ## Managing agents
 
-When utilizing GitHub's agentic features, you can use the **Agents** tab within a repository that has Copilot cloud agent enabled to initiate, monitor, and manage agent sessions without leaving your workflow. You can also use the [Agents page](https://github.com/copilot/agents?ref_product=copilot&ref_type=engagement&ref_style=text) to view and start agent sessions. To learn how to enable Copilot cloud agent, see [Access Management](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/access-management).
+When utilizing GitHub's agentic features, you can use the **Agents** tab within a repository that has Copilot cloud agent enabled to initiate, monitor, and manage agent sessions without leaving your workflow. You can also use the [Agents page](https://github.com/copilot/agents?ref_product=copilot&ref_type=engagement&ref_style=text) to view and start agent sessions. To learn how to enable Copilot cloud agent, see [Cloud Agent Access](https://docs.github.com/en/copilot/concepts/enterprise/cloud-agent-access).
 
 
 From the Agents tab, you can:
@@ -33,7 +33,7 @@ From the Agents tab, you can:
 
 * **Review and merge agent code**: Once the agent completes a session, you can jump to the pull request to review the changes, request further improvements, or approve and merge. See [Review Copilot Output](https://docs.github.com/en/copilot/how-tos/copilot-on-github/use-copilot-agents/review-copilot-output).
 * **Set up automations**: Run Copilot cloud agent automatically, on a schedule or in response to events such as an issue being opened. See [About Automations](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-automations).
-* **Query your past sessions**: You can search and reference your past agent sessions using natural language from Copilot CLI or VS Code. See [Chronicle](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/chronicle).
+* **Query your past sessions**: You can search and reference your past agent sessions using natural language from Copilot CLI or VS Code. See [Session Data](https://docs.github.com/en/copilot/concepts/security-governance-and-network-settings/session-data).
 
 ## Next steps
 

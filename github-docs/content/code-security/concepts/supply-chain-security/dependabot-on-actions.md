@@ -19,44 +19,44 @@ Future releases of GitHub will remove the ability to disable running Dependabot 
 
 To run Dependabot jobs on GitHub Actions, GitHub creates a dynamic workflow for each job. Unlike standard GitHub Actions workflows, dynamic workflows are generated for a specific run and are not stored in your repository's `.github/workflows` directory.
 
-You may see workflow runs named `dynamic/dependabot/dependabot-updates` or check runs with `(dynamic)` appended to their names. You can use the workflow run logs to troubleshoot errors or configuration problems.
-
 You may see workflow runs named `dynamic/dependabot/dependabot-updates` or check runs with `(dynamic)` appended to their names. To troubleshoot errors or configuration problems, on the repository's **Actions** tab, filter the workflow runs to show only Dependabot update jobs, then open a workflow run to view the logs.
 
-## Runner options
 ## Runner options
 
 You can run Dependabot on GitHub Actions using:
 * **Standard GitHub-hosted runners.** These are the default runners used by GitHub to execute GitHub Actions jobs.
 * **Larger runners.** These are GitHub-hosted runners with advanced features like more RAM, CPU, and disk space. For more information, see [Larger Runners](https://docs.github.com/en/actions/how-tos/manage-runners/larger-runners).
-* **Self-hosted runners.** These runners grant you greater control over Dependabot access to your private registries and internal network resources. Be aware that for security reasons, Dependabot updates on self-hosted runners will not run on public repositories. For more information on assigning a `dependabot` label on self-hosted runners, see [Configure On Self Hosted Runners](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/manage-your-dependency-security/configure-on-self-hosted-runners).
+* **Self-hosted runners.** These runners grant you greater control over Dependabot access to your private registries and internal network resources. Be aware that for security reasons, Dependabot updates on self-hosted runners will not run on public repositories. For more information on assigning labels to self-hosted runners, see [Configure On Self Hosted Runners](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/manage-your-dependency-security/configure-on-self-hosted-runners).
 
 Running Dependabot on standard GitHub-hosted or self-hosted runners **does not** count towards your included GitHub Actions minutes. For Dependabot on larger runners, GitHub will bill your organization at the regular rate. See [Actions Runner Pricing](https://docs.github.com/en/billing/reference/actions-runner-pricing).
-
 
 
 >[!NOTE]
 > Private networking is supported with either an Azure Virtual Network (VNET) or the Actions Runner Controller (ARC) for Dependabot on GitHub Actions. See [Setting Dependabot To Run On Self Hosted Runners Using Arc](https://docs.github.com/en/code-security/tutorials/secure-your-dependencies/setting-dependabot-to-run-on-self-hosted-runners-using-arc) and [Setting Dependabot To Run On GitHub Hosted Runners Using Vnet](https://docs.github.com/en/code-security/how-tos/secure-at-scale/configure-enterprise-security/configure-specific-tools/setting-dependabot-to-run-on-github-hosted-runners-using-vnet).
 
 
-
-
 ## How runner settings interact
 
-The Dependabot on GitHub Actions runners and Dependabot on self-hosted runners settings are interdependent:
 
-* Enabling "Dependabot on self-hosted runners" automatically enables "Dependabot on GitHub Actions runners". Disabling "Dependabot on GitHub Actions runners" automatically disables "Dependabot on self-hosted runners".
-* When both settings are enabled, Dependabot jobs run **only** on self-hosted runners or larger runners with a `dependabot` label—not on standard GitHub-hosted runners.
+
+You can select a runner type for Dependabot at the organization or repository level:
+
+* **Standard GitHub runner** uses the default GitHub-hosted environment.
+* **Labeled runner** sends jobs to self-hosted or larger runners that match the configured label. If you do not specify a label, Dependabot uses the `dependabot` label. You can also specify a runner group to limit jobs to matching runners in that group.
 
 > [!WARNING]
-> If both settings are enabled but no self-hosted runners or larger runners with a `dependabot` label are available, Dependabot jobs will remain queued indefinitely. Ensure runners with this label are configured before enabling "Dependabot on self-hosted runners".
+> If the specified runner group does not exist, Dependabot reports an error immediately. If the group exists but no online runner in the group matches the configured label, the job remains queued until a matching runner is available. Make sure the repository can access the specified runner group.
+
+Labeled runners are not available for public repositories. These repositories use standard GitHub-hosted runners.
+
+
 
 ## Access and permissions
 
 If you are transitioning to using Dependabot on GitHub Actions runners and you restrict access to your organization's or repository's private resources, you may need to update your list of allowed IP addresses. For example, if you currently limit access to your private resources to the IP addresses that Dependabot uses, you should update your allowlist to use the GitHub-hosted runners IP addresses sourced from the meta API endpoint. For more information, see [Meta](https://docs.github.com/en/rest/meta).
 
 
-When you enforce a policy to only allow actions and reusable workflows from your enterprise, and you enable Dependabot on GitHub Actions, Dependabot will not run. To enable Dependabot to run with your enterprise actions and reusable workflows, you should choose either to allow actions created by GitHub, or allow specified actions and reusable workflows. For more information, see [Enforcing Policies For GitHub Actions In Your Enterprise](https://docs.github.com/en/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-actions-in-your-enterprise#allowing-select-actions-and-reusable-workflows-to-run).
+When you enforce a policy to only allow actions and reusable workflows from your enterprise, and you enable Dependabot on GitHub Actions, Dependabot will not run. To enable Dependabot to run with your enterprise actions and reusable workflows, you should choose either to allow actions created by GitHub, or allow specified actions and reusable workflows. For more information, see [Enforcing Policies For GitHub Actions In Your Enterprise](https://docs.github.com/en/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-actions-in-your-enterprise#controlling-access-to-public-actions-and-reusable-workflows).
 
 
 

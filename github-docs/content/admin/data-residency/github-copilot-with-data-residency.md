@@ -30,7 +30,7 @@ If a user attempts to use Copilot with an older, incompatible client, they will 
 
 ## Supported Copilot features
 
-All generally available Copilot features work with this enforcement. See [Features](https://docs.github.com/en/copilot/get-started/features).
+All generally available Copilot features work with this enforcement. The availability of features is visible under Copilot policy controls, see [Manage Enterprise Policies](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-enterprise-policies).
 
 Preview features that reach general availability will be supported with compliant model alternatives at the time of their GA release.
 
@@ -54,17 +54,11 @@ Users will be able to see available models for your region in the model selector
 * GPT-4o
 * GPT-4.1
 * GPT-5.2
-* GPT-5.2-Codex
 * GPT-5.3-Codex
 * Claude Haiku 4.5
-* Claude Sonnet 4.5
-* Claude Opus 4.5
-* Claude Sonnet 4.6
 * Claude Sonnet 5
-* Claude Opus 4.6
 * Claude Opus 4.8
 * Claude Opus 5
-* MAI-Code-1-Flash
 
 
 ### European Union
@@ -81,18 +75,13 @@ Users will be able to see available models for your region in the model selector
 * GPT-5.6 Luna
 * GPT-5.6 Sol
 * GPT-5.6 Terra
+* GPT-6 Astra
 * Claude Haiku 4.5
-* Claude Opus 4.5
-* Claude Opus 4.6
 * Claude Opus 4.7
 * Claude Opus 4.8
 * Claude Opus 5
-* Claude Sonnet 4.5
-* Claude Sonnet 4.6
 * Claude Sonnet 5
-* Gemini 3.1 Pro
 * Gemini 3.5 Flash
-* MAI-Code-1-Flash
 
 ## Pricing changes
 
@@ -100,7 +89,7 @@ Copilot requests processed with this enforcement in place include a 10% increase
 
 For example, if an interaction would normally consume 100 AI credits, the same interaction processed with this enforcement enabled consumes 110 AI credits. This pricing applies to all compliant model requests across all providers.
 
-See [Usage Based Billing For Organizations And Enterprises](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises).
+See [Billing](https://docs.github.com/en/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing).
 
 
 ## Policy controls

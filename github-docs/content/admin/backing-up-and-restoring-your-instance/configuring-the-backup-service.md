@@ -51,23 +51,15 @@ If you're using a dedicated block device as your backup target, you need to init
 
     >[!WARNING] This command will permanently erase all data on the specified device. Double-check the device name and back up any important data before proceeding.
 
-    
-
     ```shell
     ghe-storage-init-backup /dev/YOUR_DEVICE_NAME
     ```
-
-    
 
     This command:
     * Formats the device (erases all data).
     * Prepares it for use by the backup service.
     * Sets it to mount automatically at `/data/backup` on boot.
     * If in a clustered environment, configures the node in `cluster.conf` with the `backup-server` role.
-
-    
-    From GitHub Enterprise Server 3.17.4 onward, the script is installed in PATH so you can run it directly using: `ghe-storage-init-backup /dev/YOUR_DEVICE_NAME`.
-    
 
 #### Detach a backup disk
 
@@ -158,3 +150,13 @@ Once the service is configured, you can define a backup schedule.
 
 
 The first run will be a full backup. Future runs will be incremental. If a new backup attempt starts while a previous one is still running, it may be skipped or fail. In that case, adjust the schedule to avoid overlap.
+
+
+
+
+
+## Using Elasticsearch snapshots for search index data
+
+By default, search index data is backed up by copying files directly from disk. You can optionally configure {% ifversion ghes %}your GitHub Enterprise Server instance to use Elasticsearch's native, incremental snapshot functionality with a customer-managed cloud storage provider instead. For more information, see [Configuring Elasticsearch Snapshots](https://docs.github.com/en/admin/backing-up-and-restoring-your-instance/configuring-elasticsearch-snapshots).
+
+{% endif %}

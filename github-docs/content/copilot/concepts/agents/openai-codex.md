@@ -8,7 +8,7 @@ The OpenAI Codex coding agent and the VS Code OpenAI Codex integration use the C
 
 ## OpenAI Codex coding agent
 
-Before you can assign tasks to OpenAI Codex coding agent, it must be enabled. See [Manage Policies](https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies#enabling-or-disabling-third-party-coding-agents-in-your-repositories). 
+Before you can assign tasks to OpenAI Codex coding agent, it must be enabled. See [About Third Party Coding Agents](https://docs.github.com/en/copilot/concepts/agents/about-third-party-coding-agents#making-coding-agents-available).
 
 To learn more about using third-party agents on GitHub, see [About Third Party Coding Agents](https://docs.github.com/en/free-pro-team@latest/copilot/concepts/agents/about-third-party-coding-agents).
 
@@ -22,7 +22,7 @@ When starting a task with the OpenAI Codex coding agent, you can select the AI m
 * GPT-5.4 nano
 
 
-If you select **Auto**, Copilot auto model selection will select the best model based on availability and to help reduce rate limiting. For more information, see [Auto Model Selection](https://docs.github.com/en/copilot/concepts/models/auto-model-selection).
+If you select **Auto**, it will choose one of the available models listed above. **Auto** in OpenAI Codex coding agent does **not** leverage Copilot auto model selection.
 
 ## VS Code extension
 

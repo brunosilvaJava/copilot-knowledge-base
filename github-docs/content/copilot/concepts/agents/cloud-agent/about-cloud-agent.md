@@ -69,7 +69,7 @@ The Copilot usage metrics APIs include pull request lifecycle metrics such as:
 * The number of pull requests created by Copilot cloud agent that have been merged
 * Median time to merge for merged pull requests, including pull requests created by Copilot cloud agent
 
-These metrics can help you track adoption of Copilot cloud agent and monitor changes in pull request throughput and time to merge over time. See [Copilot Metrics](https://docs.github.com/en/copilot/concepts/copilot-usage-metrics/copilot-metrics).
+These metrics can help you track adoption of Copilot cloud agent and monitor changes in pull request throughput and time to merge over time. See [Copilot Metrics](https://docs.github.com/en/copilot/concepts/billing-and-usage/copilot-usage-metrics/copilot-metrics).
 
 ## Integrating Copilot cloud agent with third-party tools
 
@@ -87,7 +87,7 @@ If you are a GitHub Copilot Business or GitHub Copilot Enterprise subscriber, an
 
 Repository owners can choose to opt out some or all repositories from Copilot cloud agent.
 
-See [Access Management](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/access-management).
+See [Cloud Agent Access](https://docs.github.com/en/copilot/concepts/enterprise/cloud-agent-access).
 
 ## AI models for Copilot cloud agent
 
@@ -111,7 +111,7 @@ The more Copilot cloud agent knows about the code in your repository, the tools 
 
 Copilot cloud agent uses GitHub Actions minutes and AI credits. The AI credits consumed depend on the model used and the number of tokens processed during the session.
 
-Within your included GitHub Actions minutes and AI credits, you can use Copilot cloud agent without incurring additional costs. See [Usage Based Billing For Organizations And Enterprises](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises).
+Within your included GitHub Actions minutes and AI credits, you can use Copilot cloud agent without incurring additional costs. See [Billing](https://docs.github.com/en/copilot/concepts/billing-and-usage/organizations-and-enterprises/billing).
 
 Copilot code review also consumes GitHub Actions minutes on private repositories. See [GitHub Actions](https://docs.github.com/en/billing/concepts/product-billing/github-actions#copilot-code-review-and-github-actions-minutes).
 
@@ -150,3 +150,4 @@ Try the [Expand your team with Copilot cloud agent](https://github.com/skills/ex
 * [Cloud Agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent) how-to articles
 * [About Custom Agents](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-custom-agents)
 * [Agents](https://docs.github.com/en/copilot/responsible-use/agents)
+* [About GitHub Agentic Workflows](https://docs.github.com/en/copilot/concepts/agents/about-github-agentic-workflows) for recurring repository automation that you want to version with your code and run in GitHub Actions
