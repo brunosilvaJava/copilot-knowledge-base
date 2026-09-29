@@ -1,8 +1,8 @@
 # Use Agent Skills in {% data variables.product.prodname_vscode_shortname %}
 
-Agent Skills are folders of instructions, scripts, and resources that GitHub Copilot can load when relevant to perform specialized tasks. Agent Skills is an [open standard](https://agentskills.io) that works across multiple AI agents, including GitHub Copilot in {% data variables.product.prodname_vscode_shortname %}, {% data variables.copilot.copilot_cli %}, and {% data variables.copilot.copilot_cloud_agent %}.
+Agent Skills are folders of instructions, scripts, and resources that AI agents can load when relevant to perform specialized tasks. Agent Skills is an [open standard](https://agentskills.io) that works across multiple AI agents, including {% data variables.product.prodname_copilot %} in {% data variables.product.prodname_vscode_shortname %}, {% data variables.copilot.copilot_cli %}, {% data variables.copilot.copilot_cloud_agent %}, and {% data variables.product.prodname_openai_codex %} [through Agent Host](../agents/run/agent-harnesses.md#codex) (Experimental).
 
-Unlike [custom instructions](custom-instructions.md) that primarily define coding guidelines, skills enable specialized capabilities and workflows that can include scripts, examples, and other resources. Skills you create are portable and work across any skills-compatible agent.
+Unlike [custom instructions](custom-instructions.md) that primarily define coding guidelines, skills enable specialized capabilities and workflows that can include scripts, examples, and other resources. Skills you create are portable across skills-compatible agents, but supported locations and optional features vary by agent. Unless otherwise noted, the configuration options and controls on this page apply to {% data variables.product.prodname_copilot_short %}.
 
 For how skills compare with the other customization options, see [Customization concepts](../agents/concepts/customization.md).
 
@@ -22,7 +22,7 @@ While both Agent Skills and custom instructions help customize Copilot's behavio
 | Feature | Agent Skills | Custom Instructions |
 | ------- | ------------ | ------------------- |
 | **Purpose** | Teach specialized capabilities and workflows | Define coding standards and guidelines |
-| **Portability** | Works across {% data variables.product.prodname_vscode_shortname %}, {% data variables.copilot.copilot_cli_short %}, and {% data variables.copilot.copilot_cloud_agent %} | {% data variables.product.prodname_vscode_shortname %} and GitHub.com only |
+| **Portability** | Works across {% data variables.product.prodname_vscode_shortname %}, {% data variables.copilot.copilot_cli_short %}, {% data variables.copilot.copilot_cloud_agent %}, and {% data variables.product.prodname_openai_codex %} through Agent Host (Experimental) | {% data variables.product.prodname_vscode_shortname %} and GitHub.com only |
 | **Content** | Instructions, scripts, examples, and resources | Instructions only |
 | **Scope** | Task-specific, loaded on-demand | Always applied (or via glob patterns) |
 | **Standard** | Open standard ([agentskills.io](https://agentskills.io)) | {% data variables.product.prodname_vscode_shortname %}-specific |
@@ -52,7 +52,10 @@ Skills are stored in directories with a `SKILL.md` file that defines the skill's
 | Project skills, stored in your repository | `.github/skills/`, `.claude/skills/`, `.agents/skills/` |
 | Personal skills, stored in your user profile | `~/.copilot/skills/`, `~/.claude/skills/`, `~/.agents/skills/` |
 
-You can configure additional file locations for project skills with the `setting(chat.agentSkillsLocations)` setting. This is useful if you want to organize skills in a different folder structure or have multiple skill directories.
+**NOTE:** To reuse repository skills with {% data variables.product.prodname_openai_codex %}, [set up Codex on Agent Host](../agents/run/agent-harnesses.md#codex) (Experimental). This integration discovers workspace skills in `.github/skills/` before your first prompt, without additional skill-location configuration. Codex also discovers `.agents/skills/` natively.
+If skills in `.github/skills/` have duplicate names across workspace roots, the primary root takes precedence. Discovery makes skills available to the model but does not guarantee that it invokes a skill for every relevant prompt.
+
+**NOTE:** The `setting(chat.agentSkillsLocations)` setting is deprecated and only used by the Local agent. If you configured other skill locations with this setting, [migrate the skills to supported locations](overview.md#migrate-customizations-from-configured-locations).
 
 **TIP:** In a monorepo, enable `setting(chat.useCustomizationsInParentRepositories)` to discover skills from the parent repository root. Learn more about [parent repository discovery](overview.md#use-customizations-in-a-monorepo).
 
@@ -88,7 +91,7 @@ To create a skill:
     * `examples/` - Example test scenarios
 
     > [!NOTE]
-    > Make sure to reference any additional files in your `SKILL.md` for them to be picked up by the agent. Use Markdown link syntax with relative paths, such as `[test template](./test-template.js)`.
+    > Make sure to reference any additional files in your `SKILL.md` for them to be picked up by the agent. Use Markdown links or `#file:` references with paths relative to the `SKILL.md` file, such as `[test template](./test-template.js)` or `#file:./test-template.js`.
 
 ### Generate a skill with AI
 
@@ -127,7 +130,7 @@ The skill body contains the instructions, guidelines, and examples that Copilot 
 * Examples of the expected input and output
 * References to any included scripts or resources
 
-You can reference files within the skill directory using relative paths. For example, to reference a script in your skill directory, use `[test script](./test-template.js)`.
+You can reference files by using Markdown links or the `#file:` syntax. For files within the skill directory, use paths relative to the `SKILL.md` file, such as `[test script](./test-template.js)`. To reference your environment user home folder, use `~`, or start a path with `~/`, such as `#file:~/skill-resources/test-template.js`. Use Unix-style `/` path separators to keep skills portable across operating systems.
 
 ### Run a skill in a forked context
 
@@ -339,6 +342,7 @@ Agent Skills is an open standard that enables portability across different AI ag
 * **GitHub Copilot in {% data variables.product.prodname_vscode_shortname %}**: Available in chat and agent mode
 * **{% data variables.copilot.copilot_cli %}**: Accessible when working in the terminal
 * **{% data variables.copilot.copilot_cloud_agent %}**: Used during automated coding tasks
+* **{% data variables.product.prodname_openai_codex %} through Agent Host (Experimental)**: Discovers workspace skills in `.github/skills/` after you [set up the integration](../agents/run/agent-harnesses.md#codex).
 
 Learn more about the Agent Skills standard at [agentskills.io](https://agentskills.io).
 

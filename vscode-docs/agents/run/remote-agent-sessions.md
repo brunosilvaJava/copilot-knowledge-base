@@ -1,4 +1,4 @@
-# Remote agent sessions
+# Run and manage remote agent sessions
 
 The [{% data variables.copilot.agents_window %}](agents-window.md) lets you connect to remote machines to start agent sessions or check in on existing ones. You can connect over SSH, through a dev tunnel, or use the {% data variables.copilot.agents_window %} directly in a browser from any device.
 
@@ -43,6 +43,26 @@ To start a session on a remote machine via dev tunnel:
 1. Type a prompt and press `kbstyle(Enter)` to start the session.
 
 **IMPORTANT:** Ensure your dev tunnel requires authentication (GitHub or Microsoft account). If the tunnel allows anonymous access, anyone who discovers the URL can reach your machine and start agent sessions. This is especially dangerous when auto-approval modes are active, because unauthorized users can trigger AI-assisted command execution with your credentials. For more information, see [Security](security.md).
+
+## Run a session in a remote Dev Container
+
+`feature(agent-host-dev-containers)`
+
+Run agents inside your remote project's Dev Container to use its configured tools and dependencies without installing them directly on the host. Starting in {% data variables.product.prodname_vscode_shortname %} 1.139, this is supported for SSH, Tunnel, and WSL hosts in the desktop {% data variables.copilot.agents_window %}.
+
+Before you start, enable `setting(chat.agentHost.devContainer.enabled)`. Docker must be installed and running on the remote host, and the project must contain a [Dev Container configuration](https://code.visualstudio.com/docs/devcontainers/create-dev-container).
+
+To run a session in a remote Dev Container:
+
+1. Connect to an SSH, Tunnel, or WSL host and select the project folder in the workspace picker.
+
+1. Expand the menu for the remote folder and select **Use Dev Container**.
+
+    The workspace label gains the **- Dev Container** suffix.
+
+1. Choose an available agent harness, configure the session, and enter your prompt.
+
+The **Use Dev Container** option appears only when the source host advertises Dev Container support. It isn't available for unsupported hosts or for folders whose source is nested inside another remote environment. For more information about prerequisites, switching back to the source host, and troubleshooting, see [Run a session in a Dev Container](agents-window.md#run-a-session-in-a-dev-container).
 
 ## Use the {% data variables.copilot.agents_window %} in the browser
 

@@ -18,11 +18,11 @@ Follow a hands-on walkthrough to customize AI for your project.
 
 ## Agent Customizations editor
 
-The Agent Customizations editor provides a central place to discover, create, and manage customizations. It organizes customization types into separate tabs and includes an editor with syntax highlighting and validation.
+The Agent Customizations editor provides a central place to discover, create, and manage customizations. It organizes customization types into separate sections and includes an editor with syntax highlighting and validation.
 
 When you open the Customizations editor, the customizations are scoped to the selected [agent harness](../agents/concepts/agent-harnesses.md). Select the harness from the dropdown in the chat input before you open the editor to ensure the customizations apply to the correct context.
 
-![Screenshot showing the Agent Customizations panel in the {% data variables.copilot.agents_window %}, with the list of available customizations visible.](images/customization/agents-customizations.png)
+![Screenshot showing the Agent Customizations editor with Copilot CLI custom agents and customization categories.](images/customization/agents-customizations.png)
 
 Follow these steps to open the Agent Customizations editor:
 
@@ -47,99 +47,76 @@ In the {% data variables.copilot.chat_view %}, select the **Configure Chat (gear
 
 
 
-## Create a customization
-
-You can create customization files manually or use AI to generate them, after which you can further edit them.
-
-### Create a customization with AI
-
-You can create a customization file with AI assistance. To do this, open the Agent Customizations editor and
-enter a prompt in the **Overview** tab that describes what you want to create. The agent asks for any missing details and generates the customization in the appropriate format.
-
-For example, to create a code reviewer skill, you can enter the following prompt:
-
-```text
-Code reviewer skill that checks for code style, best practices, and potential bugs in Python and JavaScript files.
-```
-
-### Create a customization manually
-
-You can manually create a customization file by using the **Chat: New \<customization-type\>** command from the Command Palette (`kb(workbench.action.showCommands)`). This creates the corresponding file in the appropriate location for the selected customization type. You can then edit the file in the inline editor or in a separate editor tab.
-
-Alternatively, you can use the Agent Customizations editor to create a customization file. Follow these steps:
-
-1. Open the Agent Customizations editor and select a customization type
-
-1. Choose between creating a user or workspace customization from the **New** dropdown
-
-1. Enter a name and choose a storage location when prompted
-
-1. An inline editor opens where you can further edit the customization file. The editor provides syntax highlighting and validation for the customization type.
-
-For MCP servers and agent plugins, browse the corresponding marketplace from the editor, install an item, and manage the installation from the same tab.
-
-See the guide for each customization type for its file format and configuration options.
-
-### Choose a customization scope
+## Choose a customization scope
 
 Store a customization at the narrowest scope that matches how you want to use and share it:
 
 * **User**: use the customization across your workspaces. User customizations are specific to you and are not committed to the project.
 * **Workspace**: share the customization with project contributors through source control.
+* **Organization**: centrally manage supported customization types and share them across repositories. Organization customizations are configured through GitHub rather than created in the Agent Customizations editor.
 
-Some customization types support other scopes, such as organization-level instructions. Not every customization type supports every scope. See the individual guide for its supported locations.
+Scope determines where a customization is available and who can share it. Not every customization type supports every scope. The selected agent harness also determines which customization types and locations it supports. See the guide for each customization type for its supported locations.
 
-**NOTE:** For sessions that run on [Agent Host](../agents/concepts/agent-host.md), the agent reads user-level customizations from harness-agnostic folders like `~/.copilot` (Copilot) and `~/.claude` (Claude), rather than from your {% data variables.product.prodname_vscode_shortname %} profile user data. See [instructions](custom-instructions.md#instructions-file-locations), [custom agents](custom-agents.md), and [prompt files](prompt-files.md#prompt-file-locations) for the recommended user-level locations.
+**NOTE:** For sessions that run on [Agent Host](../agents/concepts/agent-host.md), the agent reads user-level customizations from supported folders like `~/.copilot` (Copilot) and `~/.claude` (Claude), rather than from your {% data variables.product.prodname_vscode_shortname %} profile user data. See [instructions](custom-instructions.md#instructions-file-locations), [custom agents](custom-agents.md), and [prompt files](prompt-files.md#prompt-file-locations) for the recommended user-level locations.
 
-## Migrate user customizations
+## Create a customization
 
-`feature(user-customization-migration)`
+You can create customization files with AI or create them manually. Review and test every customization before you rely on it for development tasks.
 
-Agents that run through an [agent host](../agents/concepts/agent-host.md) don't read custom agents and instructions stored in your {% data variables.product.prodname_vscode_shortname %} profile user data. The migration flow moves these customizations to the user folders for the active agent host without changing their names, types, or contents.
+### Create a customization with AI
 
-The migrated files don't roam across devices through [Settings Sync](https://code.visualstudio.com/docs/configure/settings-sync). If you keep the original files in your profile user data, the original and migrated copies don't stay synchronized.
+1. Open the Agent Customizations editor.
+1. In the **Overview** section, enter a prompt that describes what you want to create.
+1. Answer any questions the agent asks about missing details.
+1. Review the generated customization, correct any inaccurate information, and save the file.
 
-To migrate user customizations:
+For example, to create a code reviewer skill, you can enter the following prompt:
 
-1. Enable the `setting(chat.customizations.userDataMigration.enabled)` setting.
+```prompt
+Create a workspace code reviewer skill for Python and JavaScript files. Check the code against the conventions in this repository, identify correctness and maintainability issues, and report findings with file locations and suggested fixes.
+```
 
-1. In the {% data variables.copilot.chat_view %}, select the agent host that should use the customizations.
+### Create a customization manually
 
-1. Select **Configure Chat** (gear icon) to open the Agent Customizations editor.
+1. Open the Agent Customizations editor and select a customization type.
+1. From the **New** dropdown, choose a user or workspace customization.
+1. Enter a name and choose a storage location when prompted.
+1. Edit the customization in the inline editor, which provides syntax highlighting and validation.
+1. Review and save the customization.
 
-1. On the **Overview** tab, find **Migrate User Data Customizations** and select **Migrate...**.
+You can also run the **Chat: New \<customization-type\>** command from the Command Palette (`kb(workbench.action.showCommands)`). The command creates the corresponding file in a supported location for that customization type.
 
-1. Select the agents and instructions to migrate. You can open a file to review it before migration.
+For MCP servers and agent plugins, browse the corresponding marketplace from the editor, install an item, and manage the installation from the same section.
 
-1. Select **Migrate**.
+See the guides for [custom instructions](custom-instructions.md), [agent skills](agent-skills.md), [prompt files](prompt-files.md), [custom agents](custom-agents.md), [MCP servers](mcp-servers.md), [hooks](hooks.md), and [agent plugins](agent-plugins.md) for their file formats and configuration options.
 
-1. In the confirmation dialog, choose whether to delete the original files from your profile user data, and then select **Migrate**.
+## Manage existing customizations
 
-The migration card appears only when an agent host is active, the setting is enabled, and {% data variables.product.prodname_vscode_shortname %} finds user-profile agents or instructions to migrate.
+Use the Agent Customizations editor to find and update customizations for the selected harness:
 
-## Evaluate and improve customization files (Preview)
+1. Open the Agent Customizations editor and select the customization type.
+1. Use the search box to find the customization.
+1. Select the customization to open its details or edit its file.
+1. Review and save your changes.
 
-As your collection of customization files grows, it can be hard to tell whether they actually guide the AI the way you intend. Vague wording, contradictory rules, or overly complex instructions can degrade results. The [Chat Customizations Evaluations](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-chat-customizations-evaluations) extension helps you catch these problems before you rely on a customization, by analyzing your files and suggesting concrete improvements.
+The available actions depend on the customization type and its source. Use the inline actions or context menu to access supported operations, such as revealing an editable file in your operating system or deleting it. Manage plugin-provided customizations from the **Plugins** section.
 
-**NOTE:** The Chat Customizations Evaluations extension is currently in preview and is published separately from {% data variables.product.prodname_vscode_shortname %}. Install it from the [{% data variables.product.prodname_vs_marketplace %}](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-chat-customizations-evaluations).
+## Verify a customization
 
-The extension works with skill files (`SKILL.md`), custom agent files (`*.agent.md`), instructions files (`*.instructions.md`), and prompt files (`*.prompt.md`).
+Test a new or updated customization with a representative task. Check that the agent follows the expected instructions, workflow, tool configuration, or lifecycle action. For instructions and skills, expand the **References** section in the chat response to confirm that the expected customization was included.
 
-Open a customization file and run the **Chat Customizations Evaluations: Analyze** command from the Command Palette (`kb(workbench.action.showCommands)`).
-The extension uses GitHub Copilot to detect issues such as:
+If the result doesn't match your intent, make the customization more specific, resolve conflicting guidance, and repeat the task. For a complete project workflow, including how to review and share generated instructions, see [Configure AI for your codebase](../agents/guides/customize-copilot-guide.md).
 
-* Logical, behavioral, and format contradictions
-* Ambiguous wording, with suggested rewrites
-* Conflicting persona traits and tone drift
-* Excessive cognitive load from deeply nested conditions
-* Gaps in intent handling and missing error paths
-* Conflicts between a file and other customization files it links to
+## Troubleshoot customization issues
 
-Diagnostics appear in the **Problems** panel (`kb(workbench.actions.view.problems)`) with line and column locations. After the analysis completes, select **Implement Suggestions** to apply the suggested improvements.
+If a customization isn't applied or causes unexpected behavior, check the following:
 
-**TIP:** You can also start an analysis from chat with the `/analyze-prompt` slash command, which summarizes the diagnostics for the active customization file directly in the {% data variables.copilot.chat_view %}.
+* The intended agent harness is selected.
+* The customization is stored in a location that the harness supports.
+* Any activation conditions match the current file or task.
+* The customization file has no validation errors.
 
-For skill files, the extension integrates with the [Waza](https://github.com/microsoft/waza) evaluation framework to measure how well a skill performs against a set of test cases. Run **Chat Customizations Evaluations: Download Waza Binary** to install Waza, **Chat Customizations Evaluations: Create Waza Eval Scaffold** to generate evaluation files for the active skill, and **Chat Customizations Evaluations: Run Waza Evaluation** to run the suite. For step-by-step guidance, run **Chat Customizations Evaluations: Open Analysis and Fix User Guide**.
+If the issue continues, open the **Agent Debug Logs** view to [troubleshoot agent issues](../agents/agent-troubleshooting/troubleshooting.md). Run **Developer: Open Agent Debug Logs** from the Command Palette (`kb(workbench.action.showCommands)`), or in the {% data variables.copilot.chat_view %} select the ellipsis (**...**) menu and select **Show Agent Debug Logs**.
 
 ## Use customizations in a monorepo
 
@@ -174,9 +151,115 @@ Conditions for parent repository discovery:
 
 **NOTE:** The `setting(chat.useCustomizationsInParentRepositories)` setting is disabled by default.
 
-## Troubleshoot customization issues
+## Migrate customizations
 
-If your customizations aren't being applied or cause unexpected behavior, open the **Agent Debug Logs** panel to [troubleshoot agent issues](../agents/agent-troubleshooting/troubleshooting.md). Run **Developer: Open Agent Debug Panel** from the Command Palette (`kb(workbench.action.showCommands)`), or in the {% data variables.copilot.chat_view %} select the ellipsis (**...**) menu and select **Show Agent Debug Logs**.
+`feature(user-customization-migration)`
+
+**NOTE:** Customization migration is available only in {% data variables.product.prodname_vscode_shortname %} Insiders.
+
+[Agent Host](../agents/concepts/agent-host.md) sessions load customizations from supported folders and don't use some {% data variables.product.prodname_vscode_shortname %}-specific formats and locations. The Agent Customizations editor provides separate migrations for each type of incompatibility.
+
+| Migration | Use it for | Setting and default |
+|-----------|------------|---------------------|
+| **Migrate Prompt Files** | Convert workspace and user prompt files to agent skills. | `setting(chat.customizations.promptMigration.enabled)`: `true` |
+| **Migrate User Data Customizations** | Move custom agents and instructions from {% data variables.product.prodname_vscode_shortname %} profile user data. | `setting(chat.customizations.userDataMigration.enabled)`: `false` |
+| **Migrate Location Settings** | Move custom agents, instructions, and skills from locations configured for the Local agent. | `setting(chat.customizations.locationsMigration.enabled)`: `false` |
+
+A migration card appears only when you select an Agent Host, the corresponding setting is enabled, and {% data variables.product.prodname_vscode_shortname %} finds customizations to migrate.
+
+### Migrate prompt files to skills
+
+**IMPORTANT:** Prompt files are deprecated for Agent Host sessions and aren't loaded by Agent Host. They continue to work with the Local agent for now, but the Local agent will be removed in a future release. Convert prompt files to [agent skills](agent-skills.md) to keep them available.
+
+Prompt file migration is enabled by default. It converts both workspace and user prompt files to skills.
+
+To migrate prompt files:
+
+1. In the {% data variables.copilot.chat_view %}, select the Agent Host that should use the skills.
+
+1. Select **Configure Chat** (gear icon) to open the Agent Customizations editor.
+
+1. On the **Overview** tab, find **Migrate Prompt Files** and select **Convert to Skills...**.
+
+1. Select the prompt files to convert. You can open a file to review it before migration.
+
+1. Select **Convert to Skills**.
+
+1. In the confirmation dialog, choose whether to delete the original prompt files, and then select **Convert to Skills**.
+
+Review any migrated skills that used prompt file frontmatter properties that aren't supported by skills. If you keep the original prompt files, the prompts and migrated skills don't stay synchronized.
+
+### Migrate user customizations
+
+Agents that run through Agent Host don't read custom agents and instructions stored in your {% data variables.product.prodname_vscode_shortname %} profile user data. The migration flow copies these customizations to the user folders for the selected Agent Host without changing their names, types, or contents.
+
+The migrated files don't roam across devices through [Settings Sync](https://code.visualstudio.com/docs/configure/settings-sync). If you keep the original files in your profile user data, the original and migrated copies don't stay synchronized.
+
+To migrate user customizations:
+
+1. Enable the `setting(chat.customizations.userDataMigration.enabled)` setting.
+
+1. In the {% data variables.copilot.chat_view %}, select the Agent Host that should use the customizations.
+
+1. Select **Configure Chat** (gear icon) to open the Agent Customizations editor.
+
+1. On the **Overview** tab, find **Migrate User Data Customizations** and select **Migrate...**.
+
+1. Select the agents and instructions to migrate. You can open a file to review it before migration.
+
+1. Select **Migrate**.
+
+1. In the confirmation dialog, choose whether to delete the original files from your profile user data, and then select **Migrate**.
+
+### Migrate customizations from configured locations
+
+The `setting(chat.agentFilesLocations)`, `setting(chat.modeFilesLocations)`, `setting(chat.instructionsFilesLocations)`, and `setting(chat.agentSkillsLocations)` settings configure additional locations for the Local agent. These settings are deprecated because Agent Host sessions don't use them.
+
+To migrate customizations from these locations:
+
+1. Enable the `setting(chat.customizations.locationsMigration.enabled)` setting.
+
+1. In the {% data variables.copilot.chat_view %}, select the Agent Host that should use the customizations.
+
+1. Select **Configure Chat** (gear icon) to open the Agent Customizations editor.
+
+1. On the **Overview** tab, find **Migrate Location Settings** and select **Migrate...**.
+
+1. Select the custom agents, instructions, and skills to migrate. You can open a file to review it before migration.
+
+1. Choose whether to clear the unused location settings after migration. This option is selected by default.
+
+1. Select **Migrate**.
+
+1. In the confirmation dialog, choose whether to delete the original files, and then select **Migrate**.
+
+Clearing a location setting and deleting its original files are separate choices. If you keep the original files, the original and migrated copies don't stay synchronized.
+
+Prompt files in locations configured with `setting(chat.promptFilesLocations)` aren't included in this migration. Use [prompt file migration](#migrate-prompt-files-to-skills) to convert them to skills.
+
+## Evaluate and improve customization files (Preview)
+
+As your collection of customization files grows, it can be hard to tell whether they actually guide the AI the way you intend. Vague wording, contradictory rules, or overly complex instructions can degrade results. The [Chat Customizations Evaluations](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-chat-customizations-evaluations) extension helps you catch these problems before you rely on a customization, by analyzing your files and suggesting concrete improvements.
+
+**NOTE:** The Chat Customizations Evaluations extension is published separately from {% data variables.product.prodname_vscode_shortname %}. Install it from the [{% data variables.product.prodname_vs_marketplace %}](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-chat-customizations-evaluations).
+
+The extension works with skill files (`SKILL.md`), custom agent files (`*.agent.md`), instructions files (`*.instructions.md`), and prompt files (`*.prompt.md`).
+
+Open a customization file and run the **Chat Customizations Evaluations: Analyze** command from the Command Palette (`kb(workbench.action.showCommands)`).
+The extension uses GitHub Copilot to detect issues such as:
+
+* Logical, behavioral, and format contradictions
+* Ambiguous wording, with suggested rewrites
+* Conflicting persona traits and tone drift
+* Excessive cognitive load from deeply nested conditions
+* Gaps in intent handling and missing error paths
+* Conflicts between a file and other customization files it links to
+
+Diagnostics appear in the **Problems** panel (`kb(workbench.actions.view.problems)`) with line and column locations. After the analysis completes, select **Implement Suggestions** to apply the suggested improvements.
+
+**TIP:** You can also start an analysis from chat with the `/analyze-prompt` slash command, which summarizes the diagnostics for the active customization file directly in the {% data variables.copilot.chat_view %}.
+
+For skill files, the extension integrates with the [Waza](https://github.com/microsoft/waza) evaluation framework to measure how well a skill performs against a set of test cases. Run **Chat Customizations Evaluations: Download Waza Binary** to install Waza, **Chat Customizations Evaluations: Create Waza Eval Scaffold** to generate evaluation files for the active skill, and **Chat Customizations Evaluations: Run Waza Evaluation** to run the suite. For step-by-step guidance, run **Chat Customizations Evaluations: Open Analysis and Fix User Guide**.
 
 ## Related resources
 

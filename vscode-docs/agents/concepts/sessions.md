@@ -1,20 +1,26 @@
-# Sessions and handoff
+# Understand agent sessions and handoff
 
-A session is the unit of work with an agent in {% data variables.product.prodname_vscode %}: a single conversation with an agent, along with all the context that builds up as it works. This article explains what a session is, how sessions behave, how they are shared across surfaces, and how you hand off a session from one agent to another.
+A session is the unit of work with an agent in {% data variables.product.prodname_vscode %}. It brings together the conversation, workspace, and code changes for a task and can contain multiple chats when the harness supports them. This article explains what a session is, how sessions behave, how they are shared across surfaces, and how you hand off a session from one agent to another.
 
 To create and organize sessions, see [Manage agent sessions](../run/sessions/manage-sessions.md).
 
 ## What is a session?
 
-A session holds one conversation with an agent, including your prompts, the agent's responses, the tool calls it makes, and the [context](context.md) it accumulates along the way. Each session is independent and has its own [context window](language-models.md#context-window), so work in one session doesn't leak into another.
+A session contains one or more chats. Each chat records your prompts, the agent's responses, the tool calls it makes, and the [context](context.md) it accumulates along the way. Its conversation history contributes to the language model's [context window](language-models.md#context-window) and isn't automatically shared with other chats or sessions.
 
 The session is the main way you organize agent work. You give a session a task, follow its progress, and review its results as a self-contained thread.
+
+The session's [execution environment](agent-harnesses.md#relate-execution-environments-and-code-isolation) determines where it works on code. An Agent Host session can use a workspace on your machine, a connected host, or inside a Dev Container on either host, depending on the available harness. A container changes the development environment, not how the session organizes the conversation and task.
 
 ## Chats within a session
 
 A session can contain more than one chat. Each chat is an independent conversation with its own history, title, status, and agent or model selection, but all chats in a session share the same workspace and code isolation. A new chat starts blank and doesn't inherit the conversation history of the other chats in the session.
 
 Running several chats in one session lets you work on related tasks against the same codebase at the same time without switching sessions. This capability runs on the [Agent Host](agent-host.md) and is available for harnesses that support it, such as Copilot and Claude. Learn how to [run multiple chats in a session](../run/sessions/manage-sessions.md#run-multiple-chats-in-a-session).
+
+For example, you're adding a sign-in form. Use one chat to build the form and another chat in the same session to write tests. The test-writing chat can read the implementation files once they're saved, but it doesn't inherit the first chat's conversation. Include requirements such as rejecting an empty email address in the second chat's prompt, rather than relying on your earlier discussion.
+
+Both chats can edit the same files. When you need separate working directories, use separate sessions with [worktree isolation](../run/agent-harnesses.md#choose-code-isolation), where available.
 
 ## Work with multiple sessions
 
@@ -34,13 +40,13 @@ On the [Agent Host](agent-host.md), an agent can also coordinate work across ses
 
 ## Hand off a session
 
-Handoff changes the session target from one [harness](agent-harnesses.md) to another and carries the full conversation history and context with it. Use handoff when a different harness or execution environment is a better fit for the next part of the task.
+Handoff continues ongoing work with a different agent configuration and carries the full conversation history and context with it. A handoff can change the [harness](agent-harnesses.md), execution environment, or agent role. Use handoff when another configuration is a better fit for the next part of the task.
 
 Common handoffs include:
 
 * **Harness to harness**: continue a Copilot session with Claude or Codex to use provider-specific capabilities.
 * **Plan to implementation**: use the [Plan agent](../run/planning.md) to produce a reviewed plan, then hand off to an implementation agent.
-* **Continue in the cloud**: hand off a well-scoped task to a [cloud harness](../run/agent-harnesses.md#start-a-cloud-session) for remote execution and a pull request workflow.
+* **Continue in the cloud**: hand off a well-scoped task to the [Cloud target](../run/agent-harnesses.md#start-a-cloud-session) for remote execution and a pull request workflow.
 
 Learn how to [hand off an ongoing session](../run/agent-harnesses.md#hand-off-a-session).
 
