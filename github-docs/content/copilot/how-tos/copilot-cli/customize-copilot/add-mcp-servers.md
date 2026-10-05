@@ -259,5 +259,5 @@ Once you have added an MCP server, Copilot can automatically use the tools it pr
 ## Further reading
 
 * [MCP](https://docs.github.com/en/copilot/concepts/context/mcp)
-* [Extend Copilot Chat With MCP](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp)
+* [Extend Copilot Chat With MCP](https://docs.github.com/en/copilot/how-tos/copilot-in-your-ide/customize-copilot/extend-copilot-with-tools-and-context/extend-copilot-chat-with-mcp)
 * [Configure MCP Servers](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/configure-mcp-servers)

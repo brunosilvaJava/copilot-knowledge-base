@@ -14,10 +14,11 @@
 | `copilot plugin`       | Manage plugins and plugin marketplaces, including listing, enabling, disabling, and uninstalling them. `copilot plugins` (plural) is a legacy alias. See [CLI Plugin Reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference). |
 | `copilot instruction` | Non-interactively list custom instruction sources discovered for the current working directory. See [Using `copilot instruction`](#using-copilot-instruction). |
 | `copilot lsp`          | Non-interactively list configured language servers. See [Using `copilot lsp`](#using-copilot-lsp). |
+| `copilot sandbox ca`   | Manage the sandbox's proxy certificate authority from outside an interactive session. See [Using `copilot sandbox ca`](#using-copilot-sandbox-ca). |
 | `copilot skill`        | Manage agent skills from the command line (list, add, remove, enable, and disable skills). See [Managing skills non-interactively](#managing-skills-non-interactively). |
 | `copilot update`       | Download and install the latest version.           |
 | `copilot version`      | Display version information and check for updates. |
-| `copilot workflow run NAME` | Run a registered dynamic workflow directly, without a parent agent turn. See [Using `copilot workflow run`](#using-copilot-workflow-run). |
+| `copilot workflow run WORKFLOW-NAME` | Run an existing dynamic workflow directly, without sending a chat prompt. Waits for the run to finish or stop. See [Using `copilot workflow run`](#using-copilot-workflow-run). |
 
 ### `copilot login` options
 
@@ -130,31 +131,50 @@ Custom agents and session-scoped hooks aren't covered by `copilot instruction`, 
 
 ### Using `copilot workflow run`
 
-Run `copilot workflow run NAME` to run a registered dynamic workflow directly, without a parent agent turn. Progress is written to output before the final result, unless `--silent` is set.
+Run a dynamic workflow provided by an extension, without opening an interactive session:
 
-```bash
-# Run a workflow without arguments
-copilot workflow run summarize
-
-# Pass inline JSON arguments
-copilot workflow run phased --args '{"tag":"demo"}'
-
-# Read arguments from a JSON file and write the result to another file
-copilot workflow run phased --args @input.json --result-file result.json
-
-# Emit one machine-readable result
-copilot workflow run echo --args '{"value":42}' --silent --output-format json
+```shell copy
+copilot workflow run WORKFLOW-NAME [OPTIONS]
 ```
 
-| Option                     | Description                                                               |
-|----------------------------|-----------------------------------------------------------------------------|
-| `NAME`                     | Registered dynamic workflow name (required). |
-| `--args=JSON`, `--args=@PATH` | Workflow arguments as inline JSON, or an `@`-prefixed path to a JSON file. |
-| `--result-file=PATH`       | Write only the workflow result to this JSON file. |
-| `--silent`, `-s`           | Suppress workflow progress output. |
-| `--output-format=FORMAT`   | Output format: `text` (default) or `json` (JSONL). |
+`WORKFLOW-NAME` is the name registered by the extension, not a path to an extension file. The command starts a run and waits for it to finish, pause, or otherwise stop.
 
-The command exits `0` when the workflow completes and `1` otherwise; an interrupt signal (<kbd>Ctrl</kbd>+<kbd>C</kbd>) exits `130`. `copilot workflow run` can't be combined with other root mode flags (for example `--prompt`, `--interactive`, `--fleet`, `--autopilot`, `--agent`, `--resume`, `--continue`, `--worktree`, or `--ui-server`)—it always runs headlessly.
+| Option | Description |
+| ------ | ----------- |
+| `--args JSON` or `--args @PATH` | Supply the workflow's inputs. Replace "JSON" here with inline JSON, or replace "PATH" with the path to a UTF-8 JSON file. Defaults to `{}` when omitted. The accepted inputs depend on the workflow. |
+| `--result-file PATH` | Write the returned value as JSON to a file instead of including it in standard output. Written only when the workflow completes and returns a result. An existing file is replaced only after the new result has been written successfully. |
+| `-s`, `--silent` | Suppress progress output. The final result is still emitted unless directed to a file. Error and status diagnostics may still appear on standard error. |
+| `--output-format FORMAT` | Set the standard output format to `text` (default) or `json` (JSONL, one JSON record per line). Combine `json` with `--silent` to receive only the final workflow record. Does not change the JSON format of `--result-file`. |
+
+Relative argument-file and result-file paths are resolved from the working directory. Without `--silent`, output includes phases and progress messages reported by the workflow.
+
+The command uses the CLI's authentication, model, permission, and sandbox settings. Permission options such as `--allow-tool` and `--allow-url` apply to the workflow's agents. It does not display permission approval prompts.
+
+Prompt and session-mode options cannot be combined with this command. Examples include `-p`, `-i`, `--agent`, `--fleet`, `--autopilot`, `--resume`, and `--continue`. Piped standard input is not used as a prompt or as workflow arguments.
+
+For more information, see [Use Dynamic Workflows](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-dynamic-workflows#running-a-dynamic-workflow-from-the-command-line) and [CLI Programmatic Reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-programmatic-reference#running-dynamic-workflows).
+
+### Using `copilot sandbox ca`
+
+Run `copilot sandbox ca` to manage the sandbox's proxy certificate authority from outside an interactive session—for example, when provisioning managed devices without a TTY. This mirrors the `/sandbox ca` slash commands (`create`, `trust`, `rotate`, `remove`), plus a `status` check.
+
+```bash
+copilot sandbox ca status
+copilot sandbox ca create
+copilot sandbox ca trust
+copilot sandbox ca rotate
+copilot sandbox ca remove
+```
+
+| Subcommand                     | Description                                                               |
+|---------------------------------|-----------------------------------------------------------------------------|
+| `copilot sandbox ca status`    | Report trust state without changing anything. |
+| `copilot sandbox ca create`    | Create the certificate authority if needed, without trusting it. |
+| `copilot sandbox ca trust [CA.PEM]` | Add the authority (default: your own) to OS trust. |
+| `copilot sandbox ca rotate`    | Replace the authority, preserving its current trust state. |
+| `copilot sandbox ca remove`    | Remove the authority from OS trust; the bundle-based path keeps working. |
+
+Run these commands as the user who runs Copilot CLI, not elevated, as `SYSTEM`, or as `root`, because the certificate authority is stored in that user's Copilot CLI home directory. Run `copilot sandbox ca trust --help` for unattended setup guidance. `copilot sandbox ca` does not accept `--config-dir`; set `COPILOT_HOME` instead to target a non-default Copilot CLI home.
 
 ## The sessions sidebar
 
@@ -521,6 +541,7 @@ These are the slash commands you can use from within an interactive CLI session.
 | `/rubber-duck [PROMPT]`                             | Consult the rubber duck agent for a second opinion on plans, code, and tests. See [Rubber Duck](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/rubber-duck). |
 | `/sandbox [config\|status\|policy\|enable\|disable]`  | Manage OS-level sandboxing that restricts filesystem and network access for shell commands, MCP/LSP servers, and built-in file/web tools. `config` (or bare `/sandbox`) opens the sandbox settings dialog. `status` shows whether sandboxing is enabled. `policy` shows the effective policy, with path grants grouped by source (user-configured, system, working directory, current session, and `~/.copilot`) and access type, plus the network stance and any detected developer tools. `enable`/`disable` turn sandboxing on or off directly. `status` and `policy` are read-only and can run while the agent is busy processing a turn. `config`, `enable`, and `disable` are queued until the turn finishes. Only available in experimental mode.
  |
+| `/sandbox ca [create\|trust\|rotate\|remove]`       | Manage the sandbox's proxy certificate authority. `create` writes it without trusting it. `trust` adds it to OS trust. `rotate` replaces it while preserving its trust state. `remove` drops OS trust. See [Using `copilot sandbox ca`](#using-copilot-sandbox-ca) to run the same operations outside a session, for example on managed devices. |
 | `/search [QUERY]`, `/find [QUERY]`                  | Search the conversation timeline. |
 | `/security-review [PROMPT]`                         | Run a focused security review of active local code changes and return prioritized vulnerability findings with remediation suggestions. This command is not a full repository security audit. |
 | `/session [info\|checkpoints [n]\|files\|plan\|rename [NAME]\|cleanup\|prune\|delete [ID]\|delete-all]`, `/sessions [info\|checkpoints [n]\|files\|plan\|rename [NAME]\|cleanup\|prune\|delete [ID]\|delete-all]`  | Show session information and manage sessions. The `info` subcommand shows session details including the session link (when available). Subcommands: `info`, `checkpoints`, `files`, `plan`, `rename`, `cleanup`, `prune`, `delete`, `delete-all`. |
@@ -545,6 +566,7 @@ These are the slash commands you can use from within an interactive CLI session.
 | `/version`                                          | Display version information and check for updates. |
 | `/vim`                                              | Toggle Vim mode for the prompt box, enabling Vim-style modal editing: motions (for example, `hjkl`, `w`, `b`, `e`, `0`, `$`, `gg`, `G`), character search (`f`/`F`/`t`/`T`/`;`/`,`), insert commands (`i`/`a`/`o`), edit commands (`r`/`~`/`J`/`x`/`D`/`C`), operators (`d`/`c`/`y`), yank and put (`y`/`p`/`P`), repeat (`.`), undo and redo (`u`/<kbd>Ctrl</kbd>+<kbd>R</kbd>), counts, and <kbd>Esc</kbd> to return to normal mode. Also configurable with the `editorMode` setting. See [CLI Config Dir Reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-config-dir-reference#user-settings-copilotsettingsjson). |
 | `/voice [on\|off\|models\|devices]`                 | Toggle voice mode, browse available voice models, or choose the input device (microphone). |
+| `/workflows`                                        | Observe workflow runs, phases, agents, and progress. Requires a token-based-billing plan. See [Using `copilot workflow run`](#using-copilot-workflow-run) to run a registered workflow directly. |
 | `/fork [NAME]`, `/branch [NAME]`                    | Fork the current session into a new session, optionally with a name. Usable while the agent is running—the source session keeps working in the background. `/fork worktree` forks the current session, preserving its conversation context, into a new Git worktree branched off `HEAD`. |
 | `/worktree [branch\|task]`                          | Create a new Git worktree and switch to it, leaving uncommitted changes behind in the current worktree. Pass a branch name, a task description (multiline supported, used as the opening prompt in the new worktree), or omit the argument to auto-generate a branch name from the conversation. By default, branches off the current checkout (`HEAD`); set the `worktreeBaseRef` setting to `"defaultBranch"` to branch off the remote default branch instead. See [CLI Config Dir Reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-config-dir-reference#user-settings-copilotsettingsjson). Requires a Git repository. |
 | `/worktree new [PROMPT]`                            | Deprecated—use `/new worktree` instead. Starts a new conversation in a new Git worktree, leaving the current conversation and its working directory unchanged. Optionally provide the first prompt. `new` is reserved as the subcommand keyword and can't be used as a literal branch name. Follows the same `worktreeBaseRef` setting as `/worktree`. | 
@@ -706,8 +728,6 @@ Use `--model=MODEL` or the `COPILOT_MODEL` environment variable to select the AI
 | `claude-opus-5.5` | New model, high-capability complex tasks |
 | `claude-haiku-4.5` | Fast, lightweight operations |
 | `gpt-5.3-codex` | Code-focused tasks |
-| `gemini-3.5-flash` | Fast Google Gemini responses |
-| `gemini-3.6-flash` | Fast Google Gemini responses |
 | `gemini-3.7-flash` | Fast Google Gemini responses |
 
 You can also switch models during an interactive session using the `/model` slash command.
@@ -1251,7 +1271,7 @@ Commands are an alternative to skills stored as individual `.md` files in `.clau
 
 ## Custom agents reference
 
-Custom agents are specialized AI agents defined in Markdown files. The filename (minus extension) becomes the agent ID. Use `.agent.md` or `.md` as the file extension.
+Custom agents are specialized AI agents defined in Markdown files. For user, project, and added-root agents, the agent ID is derived from the file's path relative to the `agents` directory. The CLI removes the `.agent.md` or `.md` extension and replaces directory separators with `--`. For example, `agents/team/reviewer.agent.md` has the ID `team--reviewer`.
 
 ### Built-in agents
 
@@ -1280,7 +1300,7 @@ Only the root agent can call `store_memory` or `vote_memory` to save or vote on 
 | `model` | string | No | AI model for this agent. When unset, inherits the outer agent's model. When the session model is set to `Auto` (server-selected), subagents always inherit the resolved session model regardless of this field. |
 | `models` | string[] | No | Authored models in priority order. The runtime uses the first model the user's plan can access; if none resolve, dispatch falls back to the session's model. Overrides `model` when both are set. |
 | `modelPolicy` | string | No | `"preferred"` (default) lets `model`/`models` be overridden by a `subagents` override in `~/.copilot/settings.json` or the `/subagents` picker. `"required"` locks dispatch to one of the authored models—overrides are rejected and the picker's **Model** entry is disabled. |
-| `name` | string | No | Display name. Defaults to the filename. |
+| `name` | string | No | Display name. You can also use this value to select the agent, for example with `--agent`. Defaults to the agent ID. |
 | `reasoningEffort` | string | No | Default reasoning effort for this agent (for example, `"low"`, `"medium"`, or `"high"`). When unset, inherits the outer agent's effort. |
 | `tools` | string[] | No | Tools available to the agent. Default: `["*"]` (all tools). Include `*` anywhere in the list to grant full tool access—for example, `["view", "*"]` grants every tool, not just `view`. |
 
@@ -1288,14 +1308,20 @@ Only the root agent can call `store_memory` or `vote_memory` to save or vote on 
 
 ### Custom agent locations
 
-| Scope | Location |
-|-------|----------|
-| Project | `.github/agents/` or `.claude/agents/` |
-| User | `~/.copilot/agents/` |
-| Plugin | `<plugin>/agents/` |
-| Added root | `.github/agents/` under a directory added with `--add-dir`, `/add-dir`, or the SDK's `additionalDirectories`. Adding the directory is a trust decision: its agents are loaded as trusted configuration. |
+The CLI loads custom agents in the following priority order. When agents have the same ID, the first agent loaded is used.
 
-For project-scoped agents, the CLI walks upward from your current working directory to the Git root, loading `.github/agents/` and `.claude/agents/` directories at each ancestor level. This means each package or subdirectory in a monorepo can contribute its own agents. When multiple `.github/agents/` directories exist in the path, all are loaded, with the deepest directory taking highest priority. The `.github/agents/` convention takes precedence over `.claude/agents/` at the same level. User-level agents have lower priority than project-level agents. Plugin agents have the lowest priority.
+| Priority | Scope | Location |
+|----------|-------|----------|
+| 1 (highest) | User | `~/.copilot/agents/` |
+| 2 | Project | `.github/agents/`, from the current working directory upward to the Git root |
+| 3 | Project | `.claude/agents/`, from the current working directory upward to the Git root |
+| 4 | Added root | `.github/agents/` under a directory added with `--add-dir`, `/add-dir`, or the SDK's `additionalDirectories`. Adding the directory is a trust decision: its agents are loaded as trusted configuration. |
+| 5 | Plugin | `<plugin>/agents/` |
+| 6 (lowest) | Remote | Organization or enterprise agents |
+
+Within each project row, the CLI checks the current working directory first, then each parent directory up to the Git root, so the deepest directory has the highest priority. Every project `.github/agents/` directory is loaded before any project `.claude/agents/` directory. This means each package or subdirectory in a monorepo can contribute its own agents.
+
+The optional `name` frontmatter field does not control deduplication. Agents with the same `name` but different IDs both load. If the value passed to `--agent` matches more than one agent's ID or `name`, the CLI uses the first matching agent in the priority order above.
 
 ### Repository custom instructions for subagents
 

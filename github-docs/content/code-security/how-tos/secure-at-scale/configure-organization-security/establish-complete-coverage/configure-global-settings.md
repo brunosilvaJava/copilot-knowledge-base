@@ -126,7 +126,13 @@ You can expand CodeQL analysis coverage for all repositories in your organizatio
 
 ### Continuing scans on inactive repositories
 
-By default, code scanning default setup pauses weekly scheduled scans on repositories that have had no commits pushed or pull requests opened for 180 days.
+
+
+By default, code scanning default setup runs weekly scheduled scans only on active repositories. A repository is active if a push or pull request has triggered a default setup scan in the last 180 days. Initial scans, scans triggered by configuration or language changes, and scheduled scans do not count as activity.
+
+When you enable default setup, an initial scan runs, but weekly scheduled scans do not start until a push or pull request triggers a scan. Pushes and pull requests from before default setup was enabled do not count as activity.
+
+
  You can select **Keep scheduled scans running every 30 days for inactive repositories** to override this behavior in an organization. The scan period is not configurable.
 
 

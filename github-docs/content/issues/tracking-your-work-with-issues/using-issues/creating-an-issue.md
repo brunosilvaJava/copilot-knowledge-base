@@ -209,7 +209,7 @@ Creating issues manually can be repetitive and time-consuming. With Copilot, you
 
 ## Creating an issue from Copilot Chat in VS Code
 
-You can also create an issue directly from Copilot Chat in VS Code, using the Model Context Protocol (MCP). See [Extend Copilot Chat With MCP](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp).
+You can also create an issue directly from Copilot Chat in VS Code, using the Model Context Protocol (MCP). See [Extend Copilot Chat With MCP](https://docs.github.com/en/copilot/how-tos/copilot-in-your-ide/customize-copilot/extend-copilot-with-tools-and-context/extend-copilot-chat-with-mcp).
 
 
 

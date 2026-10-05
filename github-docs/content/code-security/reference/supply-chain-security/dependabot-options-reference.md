@@ -714,6 +714,8 @@ There are 2 locations in the `dependabot.yml` file where you can use the `regist
 1. At the top level, where you define the private registries you want to use and their access information, see [Configure Access To Private Registries](https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/manage-your-dependency-security/configure-access-to-private-registries).
 1. Within the `updates` blocks, where you can specify which private registries each package manager should use.
 
+Each `updates` block can reference up to 100 registries from the top-level `registries` section.
+
 Dependabot default behavior is to raise pull requests only to update dependencies stored in publicly accessible registries.
 
 When the Dependabot configuration file has a top-level `registries` section, defining access to one or more private registries, you can configure each `package-ecosystem` to use one or more of these private registries.
@@ -1115,7 +1117,9 @@ Specify authentication details that Dependabot can use to access private package
 
 
 
-The value of the `registries` key is an associative array, each element of which consists of a key that identifies a particular registry and a value which is an associative array that specifies the settings required to access that registry. The following `dependabot.yml` file configures a registry identified as `dockerhub` in the `registries` section of the file and then references this in the `updates` section of the file.
+The value of the `registries` key is an associative array, each element of which consists of a key that identifies a particular registry and a value which is an associative array that specifies the settings required to access that registry. You can define up to 100 registries in the top-level `registries` section.
+
+The following `dependabot.yml` file configures a registry identified as `dockerhub` in the `registries` section of the file and then references this in the `updates` section of the file.
 
 {% raw %}
 
