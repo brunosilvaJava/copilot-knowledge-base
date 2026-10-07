@@ -33,7 +33,7 @@ For common tasks, you can use slash commands as shortcuts for frequently used pr
 
 You can run multiple sessions in parallel and switch between them without losing context. Learn more in [Manage agent sessions](../agents/run/sessions/manage-sessions.md).
 
-Each session has configuration options that shape how the agent responds, such as the agent harness, agent role, permission level, and language model. Learn how to [choose an agent harness](../agents/run/agent-harnesses.md).
+Each session has controls that shape how the agent responds: **Session Target**, **Agent**, **Language model**, and **Permissions**. Learn how to [configure an agent session](../agents/run/agent-harnesses.md#understand-the-session-controls).
 
 **TIP:** To get the best results, be specific about what you want, provide relevant context, and write clear instructions. For more information, see [Get better responses](#get-better-responses).
 
@@ -99,6 +99,8 @@ To disable the image carousel, set `setting(imageCarousel.chat.enabled)` to `fal
 
 After the AI changes files, review and validate the result before you commit or integrate it. In the {% data variables.copilot.chat_view %}, select a changed file in the response to open its diff. In the {% data variables.copilot.agents_window %}, use the **Changes** panel.
 
+For keyboard and screen reader access to a diff, use the [Accessible Diff Viewer](https://code.visualstudio.com/docs/configure/accessibility/accessibility#diff-editor-accessibility).
+
 For instructions about requesting revisions, restoring checkpoints, and integrating folder or worktree changes, see [Review AI-generated code edits](../agents/run/review-code-edits.md).
 
 ## Get notified about chat responses
@@ -134,6 +136,8 @@ Use the following keyboard shortcuts to navigate between prompts in a chat sessi
 * `kb(workbench.action.chat.previousCodeBlock)`: Go to the previous code block in the chat session.
 * `kb(workbench.action.chat.nextCodeBlock)`: Go to the next code block in the chat session.
 
+To inspect a chat response character by character or line by line with a keyboard or screen reader, run **Open Accessible View** (`kb(editor.action.accessibleView)`). Learn more about the [Accessible View](https://code.visualstudio.com/docs/configure/accessibility/accessibility#accessible-view).
+
 ## Personalize chat
 
 Adjust how chat content appears, add an interactive pet, or set a decorative background in the {% data variables.copilot.agents_window %}.
@@ -155,23 +159,6 @@ With persistent progress, reasoning appears in separate collapsible previews and
 Persistent progress defaults to **Draw** in Insiders and **Off** in Stable. Experiments can change either default during rollout, but an explicit setting always takes precedence.
 
 For more chat preferences, see the [AI settings reference](../agents/reference/ai-settings.md#chat-experience).
-
-### Use the VS Code pet
-
-`feature(chat-pet)`
-
-The interactive VS Code pet sits above the chat input box and reacts to chat activity and your interactions. Type `/vscode-pet` in the chat input to show or hide it. In the new-session view of the {% data variables.copilot.agents_window %}, you can also right-click outside the input box and select the **Pet (/vscode-pet)** item.
-
-Interact with the pet in the following ways:
-
-* Select the pet to trigger a reaction. With the keyboard, press `kbstyle(Tab)` to focus it, and then press `kbstyle(Enter)` or `kbstyle(Space)`.
-* Drag the pet around chat and release it to drop it. You can also flick it to throw it.
-* When the pet has keyboard focus, press `kbstyle(Left)` or `kbstyle(Right)` to make it hop. Hold `kbstyle(Shift)` with an arrow key to throw it toward a wall.
-* Right-click the pet to open its context menu and view achievements, send it on the run, resize it, or switch between Stable and Insiders colors. With the keyboard, focus the pet and press `kbstyle(Shift+F10)`.
-
-Only one pet appears at a time in the active chat surface. Its position and size are shared across chats and windows and persist after you restart {% data variables.product.prodname_vscode_shortname %}.
-
-For a complete list of behaviors, see the [VS Code pet interactions and reactions reference](../agents/reference/chat-pet.md).
 
 ### Customize the {% data variables.copilot.agents_window %} chat background
 
