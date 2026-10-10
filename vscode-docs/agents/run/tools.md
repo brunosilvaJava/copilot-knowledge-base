@@ -64,22 +64,7 @@ To group related tools and reuse them across prompts, prompt files, and custom a
 
 ## Select tools for a request
 
-The Local and Copilot harnesses use different controls to select client-side tools.
-
-
-
-**Local harness**
-
-
-Select tools for an individual request from the {% data variables.copilot.chat_view %}:
-
-1. In the chat input, select the **Local** harness and then select **Agent** from the agent picker.
-
-1. Select **Configure Tools**.
-
-    ![Screenshot showing the {% data variables.copilot.chat_view %}, highlighting the Configure Tools button in the chat input.](../images/chat-tools/agent-mode-select-tools.png)
-
-1. Select or deselect tools to control which ones are available for the current request. Use the search box to filter the list.
+The Copilot and Local harnesses use different controls to select client-side tools.
 
 
 
@@ -98,6 +83,21 @@ Manage tools for the Copilot harness from the Agent Customizations editor:
 1. Select the **Tools** tab.
 
 1. Select or deselect tools to control which ones are available to the Copilot harness. These choices persist in the active [user profile](https://code.visualstudio.com/docs/configure/profiles).
+
+
+
+**Local harness**
+
+
+Select tools for an individual request from the {% data variables.copilot.chat_view %}:
+
+1. In the chat input, select the **Local** harness and then select **Agent** from the agent picker.
+
+1. Select **Configure Tools**.
+
+    ![Screenshot showing the {% data variables.copilot.chat_view %}, highlighting the Configure Tools button in the chat input.](../images/chat-tools/agent-mode-select-tools.png)
+
+1. Select or deselect tools to control which ones are available for the current request. Use the search box to filter the list.
 
 
 

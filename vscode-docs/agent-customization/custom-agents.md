@@ -111,9 +111,9 @@ You can define custom agents for a specific workspace or at the user level, wher
 
 To create a user-level custom agent, use the Agent Customizations editor or the **Chat: New Custom Agent** command.
 
-**IMPORTANT:** For sessions that run on [Agent Host](../agents/concepts/agent-host.md), the agent reads user-level custom agents from the selected host's folder, such as `~/.copilot/agents` or `~/.claude/agents`, and not from {% data variables.product.prodname_vscode_shortname %} profile user data. To move existing user-level custom agents, use the [user customization migration](overview.md#migrate-user-customizations).
+**IMPORTANT:** For sessions that run on [Agent Host](../agents/concepts/agent-host.md), the agent reads user-level custom agents from the selected host's folder, such as `~/.copilot/agents` or `~/.claude/agents`, and not from {% data variables.product.prodname_vscode_shortname %} profile user data. To move existing user-level custom agents, use the [user customization migration](migrate-customizations.md#move-user-agents-and-instructions).
 
-**NOTE:** The `setting(chat.agentFilesLocations)` and `setting(chat.modeFilesLocations)` settings are deprecated and only used by the Local agent. If you configured other agent locations with these settings, [migrate the customizations to supported locations](overview.md#migrate-customizations-from-configured-locations).
+**NOTE:** The `setting(chat.agentFilesLocations)` and `setting(chat.modeFilesLocations)` settings are deprecated and only used by the Local agent. If you configured other agent locations with these settings, [migrate the customizations to supported locations](migrate-customizations.md#move-customizations-from-configured-locations).
 
 **TIP:** In a monorepo, enable `setting(chat.useCustomizationsInParentRepositories)` to discover custom agents from the parent repository root. Learn more about [parent repository discovery](overview.md#use-customizations-in-a-monorepo).
 

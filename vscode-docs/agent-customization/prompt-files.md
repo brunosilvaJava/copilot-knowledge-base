@@ -11,7 +11,7 @@ Use prompt files to:
 
 You can use the [Agent Customizations editor](overview.md#agent-customizations-editor) (Preview) to discover, create, and manage all your agent customizations in one place. Run **Chat: Open Customizations** from the Command Palette.
 
-**IMPORTANT:** Prompt files are deprecated for [Agent Host](../agents/concepts/agent-host.md) sessions and aren't loaded by Agent Host. They continue to work with the Local agent for now, but the Local agent will be removed in a future release. Use [prompt file migration](overview.md#migrate-prompt-files-to-skills) to convert existing prompts to agent skills. This experimental migration is enabled by default.
+**IMPORTANT:** Prompt files are deprecated for [Agent Host](../agents/concepts/agent-host.md) sessions and aren't loaded by Agent Host. They continue to work with the Local agent for now, but the Local agent will be removed in a future release. Use [prompt file migration](migrate-customizations.md#convert-prompt-files-to-skills) to convert existing prompts to agent skills.
 
 ## Prompt file locations
 
