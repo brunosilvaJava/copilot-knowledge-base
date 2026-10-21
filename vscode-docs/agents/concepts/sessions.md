@@ -30,6 +30,8 @@ Both chats can edit the same files. When you need separate working directories, 
 
 Continue in the same chat when you're working on the same task and its conversation history is still relevant. When you need a separate conversation, choose based on whether you want to retain that history and share the same workspace.
 
+If the task needs another folder or a new Git worktree, you don't have to start a new conversation. In supported single-chat sessions in the {% data variables.copilot.agents_window %}, you can [move the existing chat](../run/sessions/manage-sessions.md#move-a-chat-to-another-folder-or-worktree) and continue with its conversation history intact.
+
 | Choose | When to use it | Conversation history | Workspace and code changes |
 |--------|----------------|----------------------|----------------------------|
 | [New chat in the same session](../run/sessions/manage-sessions.md#run-multiple-chats-in-a-session) | Work on a related task with a fresh conversation, such as writing tests for the feature another chat is implementing. | Starts without the other chats' history. | Shares the session's workspace and worktree. |
@@ -43,6 +45,8 @@ A fork can open as another chat in the same session or as a new session, dependi
 Sessions can run in parallel and keep running when you switch between them. To return an existing conversation and affected workspace files to an earlier point instead of branching the conversation, see [Restore a checkpoint](../run/review-code-edits.md#restore-a-checkpoint).
 
 ## Sessions across surfaces
+
+**NOTE:** Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability). Existing sessions are not deleted by this restriction. Contact the IT team that deployed the settings to discuss access.
 
 You can access and continue the same live **Copilot** or **Claude** session in the [{% data variables.copilot.chat_view %}](../run/chat-view.md) and the [{% data variables.copilot.agents_window %}](../run/agents-window.md). To use **Codex** in both interfaces, configure the [experimental Codex integration](../run/agent-harnesses.md#codex). Switching between these interfaces doesn't create a session, fork the conversation, or change its harness, workspace, or worktree.
 
