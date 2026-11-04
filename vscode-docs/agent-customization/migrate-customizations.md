@@ -4,6 +4,8 @@ Move your existing Local customizations to the {% data variables.product.prodnam
 
 Start with the path for your customization below. You don't need to complete every migration in this article. For answers about keeping Local available, MCP secrets, custom discovery paths, and agent tool names, see the [migration FAQ](#frequently-asked-questions).
 
+For the broader workflow transition, including session continuity, organization rollout, and policy verification, follow [Move from Local to the Copilot harness](../agents/run/move-to-copilot.md).
+
 **NOTE:** This article covers migration to the Copilot harness. For the Claude or Codex harness, use the locations and formats in the provider documentation.
 Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability). Contact the IT team that deployed the settings to discuss access.
 
@@ -586,11 +588,11 @@ If you maintain the participant implementation, follow the separate [publisher g
 
 ## Frequently asked questions
 
-### Can I keep using Local while adapting my customizations?
+### Can I keep using the Local harness while adapting my customizations?
 
-Yes. In the editor's {% data variables.copilot.chat_view %}, start a new session and select **Local** as the **Session Target**. Local availability and automatic Copilot selection depend on your settings and organization policies. See [Keep Local available while migrating](../agents/run/agent-harnesses.md#can-i-keep-local-available-while-migrating).
+Yes, when organization controls permit it. In the editor's {% data variables.copilot.chat_view %}, start a new session and select **Local** as the **Session Target**. Local harness availability and automatic Copilot harness selection depend on your settings and organization policies. See [Keep the Local harness available while migrating](../agents/run/agent-harnesses.md#can-i-keep-local-available-while-migrating).
 
-Administrators can use the temporary `vscode.temporaryDefaultToLocalHarness` enterprise-managed setting, available from version 1.142. It keeps Local available and suppresses automatic Copilot routing, but Local does not enforce Copilot runtime-only sandbox and permission rules. Review the [administrator guidance and security caveat](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#keep-local-harness-as-default).
+Administrators can use the temporary `vscode.temporaryDefaultToLocalHarness` enterprise-managed setting, available from version 1.142. It keeps the Local harness available and suppresses automatic Copilot routing, but the Local harness does not enforce Copilot runtime-only sandbox and permission rules. It does not override `vscode.temporaryAllowLocalHarness: false`, available from version 1.143. Review the [administrator guidance and security caveat](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#keep-local-harness-as-default).
 
 ### Why are MCP servers with input prompts missing?
 
