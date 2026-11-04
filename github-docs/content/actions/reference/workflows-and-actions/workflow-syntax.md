@@ -937,7 +937,7 @@ You can use the `permissions` key to add and remove `read` permissions for forke
 
 ### Permissions for workflow runs triggered by Dependabot
 
-Workflow runs triggered by Dependabot pull requests run as if they are from a forked repository, and therefore use a read-only `GITHUB_TOKEN`. These workflow runs cannot access any secrets. For information about strategies to keep these workflows secure, see [Secure Use](https://docs.github.com/en/actions/reference/security/secure-use).
+By default, workflow runs triggered by Dependabot pull requests use a read-only `GITHUB_TOKEN` and cannot access secrets other than Dependabot secrets. You can use the `permissions` key in your workflow to increase the access for the token. For more information, see [Dependabot On Actions](https://docs.github.com/en/code-security/reference/supply-chain-security/troubleshoot-dependabot/dependabot-on-actions). For information about strategies to keep these workflows secure, see [Secure Use](https://docs.github.com/en/actions/reference/security/secure-use).
 
 
 ## `env`
@@ -1643,7 +1643,6 @@ For public repositories, jobs using the workflow labels shown in the table below
       <td> arm64 </td>
       <td>
         <code><a href="https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md">macos-latest</a></code>,
-        <code><a href="https://github.com/actions/runner-images/blob/main/images/macos/macos-14-arm64-Readme.md">macos-14</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md">macos-15</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md">macos-26</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/macos/xcode-27-arm64-Readme.md">xcode-27</a></code>
@@ -1747,7 +1746,6 @@ For internal and private repositories, jobs using the workflow labels shown in t
       <td> arm64 </td>
       <td>
         <code><a href="https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md">macos-latest</a></code>,
-        <code><a href="https://github.com/actions/runner-images/blob/main/images/macos/macos-14-arm64-Readme.md">macos-14</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md">macos-15</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md">macos-26</a></code>,
         <code><a href="https://github.com/actions/runner-images/blob/main/images/macos/xcode-27-arm64-Readme.md">xcode-27</a></code>
