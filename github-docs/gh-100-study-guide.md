@@ -62,7 +62,7 @@
 
 ## 6. GitHub Apps, OAuth Apps e integrações
 
-- [Instalar um GitHub App do Marketplace para uma organização](https://docs.github.com/en/apps/using-github-apps/installing-a-github-app-from-github-marketplace-for-your-organization)
+- [Instalar um GitHub App do Marketplace para uma organização](https://docs.github.com/en/apps/using-github-apps/installing-a-github-app-from-github-marketplace-for-your-organizations)
 - [Diferenças entre GitHub Apps e OAuth Apps](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/differences-between-github-apps-and-oauth-apps)
 - [Usar webhooks com GitHub Apps](https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps)
 - [Gerenciar acesso programático à organização](https://docs.github.com/en/organizations/managing-programmatic-access-to-your-organization)
