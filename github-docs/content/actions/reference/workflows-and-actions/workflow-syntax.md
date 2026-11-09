@@ -2204,7 +2204,9 @@ Outputs can be a maximum of 1 MB per job. The total of all outputs in a workflow
 
 Job outputs containing expressions are evaluated on the runner at the end of each job. Outputs containing secrets are redacted on the runner and not sent to GitHub Actions.
 
-If an output is skipped because it may contain a secret, you will see the following warning message: "Skip output `{output.Key}` since it may contain secret." For more information on how to handle secrets, please refer to the [Example: Masking and passing a secret between jobs or workflows](/actions/reference/workflows-and-actions/workflow-commands#example-masking-and-passing-a-secret-between-jobs-or-workflows).
+If an output is skipped because it may contain a secret, you will see this warning message, where OUTPUT-NAME is the name of the output: `Skip output 'OUTPUT-NAME' since it may contain secret`. For more information on how to handle secrets, see [Workflow Commands](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#example-masking-and-passing-a-secret-between-jobs-or-workflows).
+
+If an output evaluates to an empty string, the output is not set. If step debug logging is enabled, the job log shows this debug message, where OUTPUT-NAME is the name of the output: `Skip output 'OUTPUT-NAME' since it's empty`. For more information, see [Enable Debug Logging](https://docs.github.com/en/actions/how-tos/monitor-workflows/enable-debug-logging#enabling-step-debug-logging).
 
 To use job outputs in a dependent job, you can use the `needs` context. For more information, see [Contexts](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#needs-context).
 
@@ -2276,7 +2278,7 @@ jobs:
 {% endraw %}
 
 > [!WARNING]
-> Actions does not guarantee the order that matrix jobs will run in. Ensure that the output name is unique, otherwise the last matrix job that runs will override the output value.
+> GitHub Actions does not guarantee the order that matrix jobs will run in. Ensure that the output name is unique, otherwise the last matrix job that runs and sets the output will override the output value. An output with an empty value is not set, so it does not override a value set by another matrix job.
 
 
 ## `jobs.<job_id>.env`
