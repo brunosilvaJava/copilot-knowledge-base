@@ -23,7 +23,7 @@ You do not need a GitHub Copilot license to use AI Scan.
 
 ## Billing
 
-AI Scan usage is separate from active-committer licensing and is reported under the **Code Security AI creditss** SKU. Usage begins only when a qualifying pull request is scanned.
+AI Scan usage is separate from active-committer licensing and is reported under the **Code Security AI credits** SKU. Usage begins only when a qualifying pull request is scanned.
 
 For organization-owned repositories, usage is billed to the account responsible for the organization's billing.
 
@@ -63,6 +63,7 @@ You can use the thumbs up or thumbs down control to provide feedback and help im
 
 * AI Scan findings cannot yet be used in rulesets to enforce merge requirements.
 * AI Scan does not run on pull requests from forks or pull requests created by Dependabot.
+* Self-hosted runners are not supported.
 * Detection categories and supported languages may change as the feature evolves.
 * As with any AI-based tool, AI Scan findings may include false positives. Use the feedback mechanism to report inaccurate results.
 
@@ -114,4 +115,4 @@ People with access to security overview can also monitor AI Scan findings across
 
 For more information, see [Code Scanning On Pull Requests](https://docs.github.com/en/code-security/concepts/code-scanning/code-scanning-on-pull-requests).
 
-You can use the REST API to manage the organization or repository `ai-scan` setting. See [Code Scanning](https://docs.github.com/en/rest/code-scanning/code-scanning#get-the-ai-scan-setting-for-an-organization).
+You can use the REST API to manage the organization or repository AI Scan setting. Use the `pr_scan` property to enable or disable AI Scan for pull requests. The same endpoints manage AI Scan for repositories through the `repository_scan` property. See [Ai Scan For Repositories](https://docs.github.com/en/code-security/concepts/code-scanning/ai-scan-for-repositories#managing-ai-scan-for-repositories-with-the-rest-api) and  [Code Scanning](https://docs.github.com/en/rest/code-scanning/code-scanning#get-the-ai-scan-setting-for-an-organization).

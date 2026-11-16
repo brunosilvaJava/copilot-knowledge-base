@@ -233,6 +233,10 @@ For internal and private repositories, jobs using the workflow labels shown in t
 
 
 
+> [!NOTE]
+> During periods of high demand, jobs that run on macOS runners may take longer to start. GitHub monitors macOS usage and plans capacity to meet demand over time.
+
+
 Workflow logs list the runner used to run a job. For more information, see [View Workflow Run History](https://docs.github.com/en/actions/how-tos/monitor-workflows/view-workflow-run-history).
 
 ### Limitations for arm64 macOS runners
