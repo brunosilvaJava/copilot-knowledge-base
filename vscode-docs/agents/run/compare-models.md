@@ -4,11 +4,13 @@ Run the same prompt with multiple models or agent harnesses in the {% data varia
 
 Model comparison is available only in the {% data variables.copilot.agents_window %}. It isn't available in the editor {% data variables.copilot.chat_view %}.
 
+For help deciding when to compare models, evaluating results, and trying Fusion separately, follow the [Compare and choose models guide](../guides/choose-a-model.md).
+
 ## Prerequisites
 
 Before you start, make sure you have:
 
-* Met the [{% data variables.copilot.agents_window %} prerequisites](agents-window.md#prerequisites).
+* Met the [{% data variables.copilot.agents_window %} prerequisites](agents-window.md#open-the-agents-window).
 * Access to an eligible Agent Host harness.
 
 For a folderless comparison, use a harness that supports [quick chats](agents-window.md#start-a-quick-chat). Folderless comparisons run independent chats without worktrees.
