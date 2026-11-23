@@ -68,6 +68,10 @@ AI Scan for repositories supports all languages, including languages already sup
 
 ## Enabling AI Scan for repositories
 
+> [!NOTE]
+> AI Scan features do not respect the models enabled in the Copilot **Configure models** policy for your enterprise or organization, so AI Scan may use models that the policy doesn't allow. To control whether AI Scan can run, use the AI Scan settings and enterprise policy instead.
+
+
 Before enabling AI Scan for repositories, confirm repository eligibility, review the billing account's included AI credits, and configure budgets for metered usage.
 
 * **Enterprise**: Enterprise owners can allow or prevent organizations from enabling AI Scan for repositories. This policy controls both AI Scan on pull requests and AI Scan for a repository's backlog. The policy is set to "Not allowed" by default. Allowing AI Scan does not enable it automatically. See [Enforcing Policies For Code Security And Analysis For Your Enterprise](https://docs.github.com/en/enterprise-cloud@latest/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-code-security-and-analysis-for-your-enterprise#enforcing-a-policy-to-manage-ai-scan-in-your-enterprises-repositories).

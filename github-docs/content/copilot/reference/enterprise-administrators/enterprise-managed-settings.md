@@ -17,6 +17,7 @@ For instructions on creating the file, see [Get Started](https://docs.github.com
 | `permissions.disableAssistedPermissionsMode` | Prevents users from enabling assisted permissions |
 | `permissions.defaultMode` | Controls the default permission mode for new sessions |
 | `features.computerUse` | Controls whether users can enable computer use |
+| `features.browserUse` | Controls whether users can enable browser use |
 | `model` | Sets your preferred model as the default for new conversations |
 | `fusionTier` | Sets the default effort level for new conversations when the selected model is `fusion` |
 | `autoTier` | Sets the default Auto routing tier for new conversations |
@@ -50,8 +51,9 @@ Some keys require a minimum version in certain clients. See the footnotes in the
 | `permissions.disableAssistedPermissionsMode` | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} |
 | `permissions.defaultMode` | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} |
 | `features.computerUse` | {% octicon "check" aria-label="Supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} |
+| `features.browserUse` | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "check" aria-label="Supported" %} |
 | `model` | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "x" aria-label="Not supported" %} |
-| `fusionTier` | {% octicon "check" aria-label="Supported" %}[^fusion-tier-cli] | {% octicon "check" aria-label="Supported" %}[^fusion-tier-vscode] | {% octicon "check" aria-label="Supported" %}[^fusion-tier-app] | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} |
+| `fusionTier` | {% octicon "check" aria-label="Supported" %}[^fusion-tier-cli] | {% octicon "check" aria-label="Supported" %}[^fusion-tier-vscode] | {% octicon "check" aria-label="Supported" %}[^fusion-tier-app] | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "check" aria-label="Supported" %}[^fusion-tier-jetbrains] |
 | `autoTier` | {% octicon "check" aria-label="Supported" %}[^auto-tier-cli] | {% octicon "check" aria-label="Supported" %}[^auto-tier-vscode] | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} |
 | `communication.support.url` | {% octicon "check" aria-label="Supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "x" aria-label="Not supported" %} |
 | `enabledPlugins` | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "x" aria-label="Not supported" %} | {% octicon "check" aria-label="Supported" %} | {% octicon "check" aria-label="Supported" %} |
@@ -73,6 +75,8 @@ Some keys require a minimum version in certain clients. See the footnotes in the
 [^fusion-tier-vscode]: `fusionTier` requires VS Code 1.144.0 or later.
 
 [^fusion-tier-app]: `fusionTier` requires the GitHub Copilot app 1.1.33-4 or later.
+
+[^fusion-tier-jetbrains]: `fusionTier` requires version 1.21.0 or later of the GitHub Copilot plugin for JetBrains IDEs.
 
 [^auto-tier-cli]: `autoTier` requires Copilot CLI 1.0.87-0 or later.
 
@@ -103,7 +107,8 @@ The following example shows these keys in one managed settings file.
 ```json
 {
   "features": {
-    "computerUse": false
+    "computerUse": false,
+    "browserUse": false
   },
   "model": "auto",
   "autoTier": "intelligence",
@@ -198,6 +203,14 @@ The following example shows these keys in one managed settings file.
 ## features.computerUse
 
 Controls whether users can enable computer use in GitHub Copilot CLI and the GitHub Copilot app. Set `features.computerUse` to `false` to prevent users from enabling computer use. A local setting cannot override this restriction. Set the value to `true`, or omit the key, to allow users to control computer use through their local settings.
+
+## features.browserUse
+
+> [!NOTE]
+> Browser use is in public preview and subject to change.
+
+
+Controls whether users can enable browser use in a Copilot surface. Set `features.browserUse` to `false` to prevent users from enabling browser use. A local setting cannot override this restriction. Set the value to `true`, or omit the key, to allow users to control browser use through their local settings.
 
 ## enabledPlugins
 
@@ -445,6 +458,8 @@ Omit this key entirely to allow all servers, subject to any entries in `deniedMc
 
 When multiple settings sources define `allowedMcpServers`, the effective allowlist is the intersection of all sources. A server must be permitted by every source to run.
 
+In Copilot CLI, set the `allowManagedMcpServersOnly` key in MDM managed settings to `true` to restrict server eligibility to the managed `allowedMcpServers` allowlist, servers from managed or force-enabled plugins, and any fixed managed-MCP deployment. Lower-precedence user or workspace allowlist entries cannot broaden this policy. `deniedMcpServers` still applies, and trusted first-party servers remain exempt.
+
 Each entry must contain exactly one matcher property.
 
 | Property | Matching behavior | Applicable servers |
@@ -470,7 +485,9 @@ Before comparing a `serverUrl` pattern with a server URL, the client normalizes 
 
 Defines MCP servers that are unconditionally blocked. A server matching any entry is blocked even if it also matches an entry in `allowedMcpServers`. Deny rules always take precedence over allow rules.
 
-First-party Copilot servers, such as the built-in GitHub MCP server, are exempt from deny rules and cannot be blocked.
+First-party Copilot servers, such as the built-in GitHub MCP server, are exempt from these deny rules.
+
+In Copilot CLI, the account's Copilot MCP policy still applies to trusted first-party servers despite their exemption from `allowedMcpServers` and `deniedMcpServers`. If that policy disables MCP, the built-in GitHub MCP server does not start.
 
 When multiple settings sources define `deniedMcpServers`, the effective denylist is the union of all sources. A server blocked by any source is blocked for all.
 
