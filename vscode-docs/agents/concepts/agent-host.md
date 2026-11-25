@@ -16,7 +16,7 @@ Separating the agent from the window that displays it provides these capabilitie
 * **Multiple agent implementations**: different agent runtimes plug into one host-facing interface and present common session concepts to clients.
 * **Dedicated process**: agents run in their own process, where they won't be blocked by busy extensions.
 
-**NOTE:** Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability). Contact the IT team that deployed the settings to discuss access.
+**NOTE:** Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), unless your administrator explicitly permits them. Contact the IT team that deployed the settings to discuss access.
 
 ## Process architecture
 
@@ -70,7 +70,7 @@ For sessions on your own remote machines, keep the machine and the process servi
 
 Cloud session execution doesn't depend on keeping your local application open. The service manages the environment's availability and lifetime. A stored conversation doesn't guarantee that its cloud environment is still available. See [continue an existing cloud session](../run/cloud-sandbox-sessions.md#continue-an-existing-cloud-session).
 
-Connected clients can contribute tools, such as browser tools or tools from installed extensions. The Agent Host adds those definitions to the session and routes each tool call back to the contributing client. These tools require that client to remain connected. Learn how to [manage tool availability](../run/tools.md#manage-tool-availability-for-the-copilot-harness).
+Connected clients can contribute tools, such as browser tools or tools from installed extensions. The Agent Host adds those definitions to the session and routes each tool call back to the contributing client. These tools require that client to remain connected. Learn how to [manage tool availability](../run/tools.md#manage-available-tools).
 
 ## Agent Host Protocol
 

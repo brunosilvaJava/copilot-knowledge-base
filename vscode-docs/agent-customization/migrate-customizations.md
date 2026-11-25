@@ -7,7 +7,7 @@ Start with the path for your customization below. You don't need to complete eve
 The Local harness `feature(local-harness)` is deprecated and will be removed by **February 2027**. Complete your customization migration before then. For the broader workflow transition, including session continuity, organization rollout, and policy verification, follow [Move from Local to the Copilot harness](../agents/run/move-to-copilot.md).
 
 **NOTE:** This article covers migration to the Copilot harness. For the Claude or Codex harness, use the locations and formats in the provider documentation.
-Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability). Contact the IT team that deployed the settings to discuss access.
+Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), unless your administrator explicitly permits them. Contact the IT team that deployed the settings to discuss access.
 
 ## Choose a migration path
 
@@ -616,7 +616,7 @@ Inventory the responsibilities of your participant before choosing its component
 
 Neither an elicitation response nor an MCP App confirmation replaces host tool approvals or service authorization.
 
-MCP Apps require a client that supports their UI. Provide a useful text or structured tool result for clients without that support. Test app behavior in each target client instead of assuming that every Copilot interface renders the same controls. In {% data variables.product.prodname_vscode_shortname %}, review the [MCP Apps behavior and limitations](/api/extension-guides/ai/mcp.md#vs-code-behavior-and-limitations), including how apps add messages and context.
+MCP Apps require a client that supports their UI. Provide a useful text or structured tool result for clients without that support. Test app behavior in each target client instead of assuming that every Copilot interface renders the same controls. In {% data variables.product.prodname_vscode_shortname %}, review the [MCP Apps behavior and limitations](/api/extension-guides/ai/mcp.md#mcp-apps), including how apps add messages and context.
 
 #### Example: migrate a code tutor to a plugin
 
@@ -703,7 +703,7 @@ Review both the coordinator's Markdown instructions and its `tools` list. Prefer
 
 Finding an agent file does not mean that its tool list is compatible with the selected harness. Local delegation references such as `agent/runSubagent` and user-defined tool sets aren't portable Copilot tool configurations. Qualified client-tool references, including `vscode/<tool>`, can be valid when those tools are provided to the Copilot session.
 
-Review each entry in `tools` against the capabilities available in the Copilot session. Select Copilot before [editing the agent file](../agents/reference/custom-agent-file-reference.md#edit-a-custom-agent-file) and use its completions to preserve canonical tool references. Check the [Tools tab](../agents/run/tools.md#manage-tool-availability-for-the-copilot-harness), the [custom agent tool reference](../agents/reference/custom-agent-file-reference.md#tools), and [tool-set migration guidance](#replace-tool-sets). Keep required capabilities explicitly configured. Removing the entire tool restriction is not an equivalent migration.
+Review each entry in `tools` against the capabilities available in the Copilot session. Select Copilot before [editing the agent file](../agents/reference/custom-agent-file-reference.md#edit-a-custom-agent-file) and use its completions to preserve canonical tool references. Check the [Tools tab](../agents/run/tools.md#manage-available-tools), the [custom agent tool reference](../agents/reference/custom-agent-file-reference.md#tools), and [tool-set migration guidance](#replace-tool-sets). Keep required capabilities explicitly configured. Removing the entire tool restriction is not an equivalent migration.
 
 Do not assume that removing a prefix or replacing a tool name fixes every discovery error. These editor hints aren't proof of a runtime tool-discovery failure.
 

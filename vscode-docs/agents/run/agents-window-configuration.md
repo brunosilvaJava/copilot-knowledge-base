@@ -15,7 +15,7 @@ The {% data variables.copilot.agents_window %} uses the accounts and model crede
 
 For account requirements, billing options, and integration setup, see [Agent harness requirements and setup](agent-harnesses.md#requirements-and-setup).
 
-**NOTE:** Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), even with separate provider credentials. Contact the IT team that deployed the settings to discuss access.
+**NOTE:** Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), unless your administrator explicitly permits them. Separate provider credentials don't override that restriction. Contact the IT team that deployed the settings to discuss access.
 
 {% data variables.product.prodname_anthropic_claude_short %}, ChatGPT-backed {% data variables.product.prodname_openai_codex_short %}, and BYOK models can run in the desktop {% data variables.copilot.agents_window %} without {% data variables.product.prodname_github %} sign-in when you configure the supported provider credentials. Features that require {% data variables.product.prodname_github %} authentication prompt you to sign in when needed. The browser-based {% data variables.copilot.agents_window %} always requires {% data variables.product.prodname_github %} sign-in.
 
@@ -107,6 +107,8 @@ This setting changes the default only in the {% data variables.copilot.agents_wi
 ## Use {% data variables.product.prodname_vscode_shortname %} extensions in the {% data variables.copilot.agents_window %}
 
 Choose which installed {% data variables.product.prodname_vscode_shortname %} extensions run in the {% data variables.copilot.agents_window %} without changing their enablement in the editor window. Extensions must be installed in your default {% data variables.product.prodname_vscode_shortname %} profile.
+
+To give an agent new tools, follow [Add extension tools for the {% data variables.product.prodname_copilot_short %} harness](tools.md#add-extension-tools-for-the-copilot-harness). That workflow covers installation, extension enablement, and tool selection in both the editor and the {% data variables.copilot.agents_window %}. The options below apply to extensions generally, including those that don't contribute tools.
 
 Extensions that contribute only static content, such as themes, grammars, languages, and keybindings, activate automatically.
 

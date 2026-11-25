@@ -30,7 +30,7 @@ The {% data variables.copilot.chat_view %} opens in the Secondary Side Bar, next
 
 ## Start a session
 
-**NOTE:** Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability). Contact the IT team that deployed the settings to discuss access.
+**NOTE:** Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), unless your administrator explicitly permits them. Contact the IT team that deployed the settings to discuss access.
 
 1. Open the project you want to work on and select **New Chat** (`+`) or press `kb(workbench.action.chat.newChat)`.
 
@@ -66,7 +66,7 @@ Keep the code and its checks beside the conversation as you work:
 
 1. **Validate before integrating**: Check the agent's test results and run the relevant checks yourself. See [Review AI-generated code edits](review-code-edits.md) for feedback, checkpoints, and recovery.
 
-The {% data variables.product.prodname_copilot_short %} working set works without Git, but only lists changes made through tracked edit tools, not terminal commands. Review other changed files separately. See [review controls by harness and interface](review-code-edits.md#review-agent-changes) for the complete workflow.
+The {% data variables.product.prodname_copilot_short %} working set works without Git, but only lists changes made through tracked edit tools, not terminal commands. Review other changed files separately. See [review controls by harness and interface](review-code-edits.md#configure-review-controls) for the complete workflow.
 
 To show a changed-files summary after each request, enable `setting(chat.checkpoints.showFileChanges)`. Supported tools depend on your harness and installed extensions. For example, you can [work with Jupyter notebooks](../guides/notebooks-with-ai.md) with the required tools installed. In a [remote workspace](https://code.visualstudio.com/docs/remote/remote-overview), the session uses that project's remote context and tools.
 

@@ -6,7 +6,7 @@ Use the [Agent Customizations editor](#find-and-manage-hooks) to create and mana
 
 **NOTE:** Individual provider implementations can have a different lifecycle status and release schedule.
 
-**IMPORTANT:** Your organization might restrict which hooks can run. Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability). Contact the IT team that deployed the settings to discuss access. Administrators can learn how to [manage hooks in enterprise environments](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#enable-or-disable-hooks).
+**IMPORTANT:** Your organization might restrict which hooks can run. Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), unless your administrator explicitly permits them. Contact the IT team that deployed the settings to discuss access. Administrators can learn how to [manage hooks in enterprise environments](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#enable-or-disable-hooks).
 
 ## Choose the hook implementation for your session
 

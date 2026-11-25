@@ -47,6 +47,7 @@ Use custom instructions when you want to:
 
 Skills can come from the following sources:
 
+* **Built-in skills:** The {% data variables.copilot.agents_window %} includes skills such as `/automate` to [turn a task into a recurring automation](../agents/run/automations.md#create-an-automation-from-chat). No installation is needed.
 * **Project or personal files:** [Create a skill](#create-a-skill), [copy and adapt one](#copy-and-adapt-an-existing-skill), or use skills included in a repository.
 * **Marketplaces and plugins:** [Install individual skills](#install-a-skill-from-the-customization-marketplace-preview) or use skills bundled in an [agent plugin](agent-plugins.md).
 * **Extensions:** Installed {% data variables.product.prodname_vscode_shortname %} extensions can [contribute skills](#contribute-skills-from-extensions).
@@ -204,7 +205,7 @@ To reuse repository skills with {% data variables.product.prodname_openai_codex 
 
 If skills in `.github/skills/` have duplicate names across workspace roots, the primary root takes precedence.
 
-The Codex harness is disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability). Contact the IT team that deployed the settings to discuss access.
+The Codex harness is disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), unless your administrator explicitly permits it. Contact the IT team that deployed the settings to discuss access.
 
 ### Local
 

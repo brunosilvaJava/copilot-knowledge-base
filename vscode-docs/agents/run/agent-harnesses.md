@@ -32,7 +32,7 @@ A session can group chats that use different harnesses with [mixed-harness chats
 
 Available models depend on the harness and how you [access models](../../agent-customization/language-models.md#choose-how-to-access-models), such as through a {% data variables.product.prodname_copilot %} subscription, another supported account, or your own API key. Harness-specific customizations, including [hooks](../../agent-customization/hooks.md#choose-the-hook-implementation-for-your-session), follow the selected harness.
 
-**NOTE:** Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), including managed permission or sandbox settings. Contact the IT team that deployed the settings to discuss access. If you don't know the owner, ask your IT help desk to find the responsible administrator.
+**NOTE:** Claude and Codex harnesses are disabled when [{% data variables.product.prodname_copilot_short %} enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), including managed permission or sandbox settings, unless your administrator explicitly permits them. Contact the IT team that deployed the settings to discuss access. If you don't know the owner, ask your IT help desk to find the responsible administrator.
 
 ## Select a harness
 
@@ -59,7 +59,7 @@ After selecting a harness, choose an available built-in agent from the agent pic
 | **Copilot** | <ul><li>**Ask** answers questions and researches your codebase without making changes. It only uses read-only tools and can't edit files or run state-changing commands.</li><li>**Agent** implements changes and validates the result.</li><li>**[Plan](planning.md)** researches a task and creates an implementation plan for you to review. Invoke it with `/plan`.</li></ul> |
 | **Local** `feature(local-harness)` | <ul><li>**Ask** answers questions without changing your code.</li><li>**Agent** implements changes and validates the result.</li><li>**Plan** researches a task and creates an implementation plan for you to review.</li></ul> |
 
-Switching agents doesn't change the harness. You can also select [custom agents](../../agent-customization/custom-agents.md) from the same picker. In the Copilot harness, [Autopilot](approvals.md#how-autopilot-works) is a mode with its own workflow, not an additional built-in agent.
+Switching agents doesn't change the harness. You can also select [custom agents](../../agent-customization/custom-agents.md) from the same picker. In the Copilot harness, [Autopilot](approvals.md#autopilot-mode) is a mode with its own workflow, not an additional built-in agent.
 
 <a name="choose-code-isolation"></a>
 
@@ -105,7 +105,7 @@ To use supported models through your own credentials, follow the [Experimental A
 
 For managed user accounts on GHE.com, complete the setup in [Using GitHub Copilot with an account on GHE.com](https://docs.github.com/en/copilot/managing-copilot/configure-personal-settings/using-github-copilot-with-an-account-on-ghecom).
 
-Before reusing a Local harness `feature(local-harness)` session's configuration, check [tool availability](tools.md#manage-tool-availability-for-the-copilot-harness) and [MCP configuration compatibility](../reference/mcp-configuration.md#configuration-file). Copilot harness sessions don't have access to every built-in or extension-provided tool. The shared SDK runtime also does not imply identical tools, models, permissions, or customizations across products, or that all sessions and personal settings synchronize.
+Before reusing a Local harness `feature(local-harness)` session's configuration, check [tool availability](tools.md#manage-available-tools) and [MCP configuration compatibility](../reference/mcp-configuration.md#configuration-file). Copilot harness sessions don't have access to every built-in or extension-provided tool. The shared SDK runtime also does not imply identical tools, models, permissions, or customizations across products, or that all sessions and personal settings synchronize.
 
 For enterprise SDK Policy Hooks requirements, see [enterprise hook configuration](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#enable-or-disable-hooks).
 
@@ -150,7 +150,7 @@ To use Codex in the {% data variables.copilot.chat_view %}, install and enable t
 
 #### Agent Host integration (Experimental)
 
-**NOTE:** The Codex Agent Host integration is disabled when [enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), even with a ChatGPT account or the integration's user setting set to `true`. Contact the IT team that deployed the settings to discuss access.
+**NOTE:** The Codex Agent Host integration is disabled when [enterprise-managed settings apply](https://code.visualstudio.com/docs/enterprise/manage-ai-settings#claude-and-codex-availability), unless your administrator explicitly permits it. A ChatGPT account or the integration's user setting set to `true` doesn't override that restriction. Contact the IT team that deployed the settings to discuss access.
 
 Enable `setting(chat.agentHost.codexAgent.enabled)` to make Codex available in the {% data variables.copilot.agents_window %} without the {% data variables.product.prodname_openai_codex %} extension.
 
@@ -255,7 +255,7 @@ The Copilot harness provides these benefits:
 
 Start with **Copilot** for day-to-day coding and agent tasks, especially when you want to continue work between the {% data variables.copilot.chat_view %} and {% data variables.copilot.agents_window %}, or keep work running after closing an editor window.
 
-If your workflow depends on specific tools or customizations that aren't supported by the Copilot harness, please [let us know](https://github.com/microsoft/vscode/issues). Before moving an existing workflow, check [tool availability](tools.md#manage-tool-availability-for-the-copilot-harness), [MCP configuration compatibility](../reference/mcp-configuration.md#configuration-file), and [hook compatibility](../../agent-customization/hooks.md#migrate-hooks-between-harnesses).
+If your workflow depends on specific tools or customizations that aren't supported by the Copilot harness, please [let us know](https://github.com/microsoft/vscode/issues). Before moving an existing workflow, check [tool availability](tools.md#manage-available-tools), [MCP configuration compatibility](../reference/mcp-configuration.md#configuration-file), and [hook compatibility](../../agent-customization/hooks.md#migrate-hooks-between-harnesses).
 
 ### Can I keep the Local harness available while migrating?
 
